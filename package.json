@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node dist/index.js",
     "watch": "tsc -w",
-    "backend": "nodemon dist/index.js",  
+    "backend": "nodemon dist/index.js",
     "frontend": "yarn --cwd frontend start",
     "dev": "concurrently \"yarn run backend\" \"yarn run frontend\""
   },
@@ -14,6 +14,7 @@
   "author": "rekcoob",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "express": "^4.17.1"
   },
   "devDependencies": {
