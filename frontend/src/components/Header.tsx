@@ -1,7 +1,7 @@
 import React from 'react';
 import { Navbar, Nav, Container } from 'react-bootstrap';
 
-export const Header = () => {
+export const Header: React.FC = () => {
 	return (
 		<header>
 			<Navbar bg="dark" variant="dark" expand="lg" collapseOnSelect>

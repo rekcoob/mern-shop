@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 
-export const Footer = () => {
+export const Footer: React.FC = () => {
 	return (
 		<footer>
 			<Container>
