@@ -13,7 +13,7 @@ const App: React.FC = () => {
 			<main className="py-3">
 				<Container>
 					<Route exact path="/" component={HomePage} />
-					<Route path="/:id" component={ProductPage} />
+					<Route path="/product/:id" component={ProductPage} />
 				</Container>
 			</main>
 			<Footer />
