@@ -1,14 +1,12 @@
 ### FE
 
-rect-router-dom
+yarn add axios rect-router-dom
+yarn add -D @types/react-router-dom
 
-react-bootstrap
-react-router-bootstrap
-
--D @types/react-router-dom
--D @types/react-router-bootstrap
+yarn add react-bootstrap react-router-bootstrap
+yarn add -D @types/react-router-bootstrap
 
 ### BE
 
-express
--D typescript nodemon @types/express @types/node @types/express
+yarn add express
+yarn add -D typescript nodemon @types/express @types/node @types/express

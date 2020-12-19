@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import { Rating } from '../components/Rating';
-import products from '../products';
+import axios from 'axios';
+import { IProduct } from '../types';
 
 type MatchParams = {
 	id: string;
@@ -11,7 +12,15 @@ type Props = RouteComponentProps<MatchParams>;
 // type Props = RouteComponentProps<{ id: string }>;
 
 export const ProductPage: React.FC<Props> = (props) => {
-	const product = products.find((p) => p._id === props.match.params.id);
+	const [product, setProduct] = useState<IProduct | any>({});
+
+	useEffect(() => {
+		const fetchProduct = async () => {
+			const { data } = await axios.get(`/api/product/${props.match.params.id}`);
+			setProduct(data);
+		};
+		fetchProduct();
+	}, []);
 
 	return (
 		<>
