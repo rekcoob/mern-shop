@@ -10,3 +10,4 @@ yarn add -D @types/react-router-bootstrap
 
 yarn add express
 yarn add -D typescript nodemon @types/express @types/node @types/express
+yarn add -D concurrently

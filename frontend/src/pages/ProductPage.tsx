@@ -11,16 +11,16 @@ type MatchParams = {
 type Props = RouteComponentProps<MatchParams>;
 // type Props = RouteComponentProps<{ id: string }>;
 
-export const ProductPage: React.FC<Props> = (props) => {
+export const ProductPage: React.FC<Props> = ({ match }) => {
 	const [product, setProduct] = useState<IProduct | any>({});
 
 	useEffect(() => {
 		const fetchProduct = async () => {
-			const { data } = await axios.get(`/api/product/${props.match.params.id}`);
+			const { data } = await axios.get(`/api/product/${match.params.id}`);
 			setProduct(data);
 		};
 		fetchProduct();
-	}, []);
+	}, [match]);
 
 	return (
 		<>
