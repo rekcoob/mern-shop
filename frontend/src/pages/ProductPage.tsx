@@ -3,7 +3,7 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 import { Rating } from '../components/Rating';
 import axios from 'axios';
-import { IProduct } from '../types';
+import { IProduct } from '../store/types/productTypes';
 
 type MatchParams = {
 	id: string;
