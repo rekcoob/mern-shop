@@ -13,3 +13,4 @@ yarn add -D typescript nodemon @types/express @types/node @types/express
 yarn add -D concurrently
 
 yarn add dotenv
+yarn add mongoose
