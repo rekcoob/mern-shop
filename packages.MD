@@ -6,6 +6,10 @@ yarn add -D @types/react-router-dom
 yarn add react-bootstrap react-router-bootstrap
 yarn add -D @types/react-router-bootstrap
 
+// thunk is middleware that allows us to make async requests
+yarn add redux react-redux redux-thunk redux-devtools-extension
+yarn add -D @types/react-redux
+
 ### BE
 
 yarn add express
