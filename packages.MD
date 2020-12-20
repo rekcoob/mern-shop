@@ -17,3 +17,5 @@ yarn add mongoose
 
 yarn add bcryptjs
 yarn add -D @types/bcryptjs
+
+yarn add express-async-handler
