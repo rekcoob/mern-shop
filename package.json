@@ -8,17 +8,21 @@
     "watch": "tsc -w",
     "backend": "nodemon dist/index.js",
     "frontend": "yarn --cwd frontend start",
-    "dev": "concurrently \"yarn run backend\" \"yarn run frontend\""
+    "dev": "concurrently \"yarn run backend\" \"yarn run frontend\"",
+    "data:import": "node dist/seeder",
+    "data:destroy": "node dist/seeder"
   },
   "keywords": [],
   "author": "rekcoob",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "mongoose": "^5.11.8"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/express": "^4.17.9",
     "@types/node": "^14.14.14",
     "concurrently": "^5.3.0",

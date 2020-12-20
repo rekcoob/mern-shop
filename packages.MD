@@ -14,3 +14,6 @@ yarn add -D concurrently
 
 yarn add dotenv
 yarn add mongoose
+
+yarn add bcryptjs
+yarn add -D @types/bcryptjs
