@@ -1,9 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { Link, RouteComponentProps } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
+import { Loader } from '../components/Loader';
+import { Message } from '../components/Message';
 import { Rating } from '../components/Rating';
-import axios from 'axios';
-import { IProduct } from '../store/types/productTypes';
+import { listProductDetails } from '../store/actions/productActions';
+import { RootState } from '../store/types/rootTypes';
 
 type MatchParams = {
 	id: string;
@@ -12,22 +15,27 @@ type Props = RouteComponentProps<MatchParams>;
 // type Props = RouteComponentProps<{ id: string }>;
 
 export const ProductPage: React.FC<Props> = ({ match }) => {
-	const [product, setProduct] = useState<IProduct | any>({});
+	const dispatch = useDispatch();
+
+	const productDetails = useSelector(
+		(state: RootState) => state.productDetails
+	);
+	const { loading, error, product } = productDetails;
 
 	useEffect(() => {
-		const fetchProduct = async () => {
-			const { data } = await axios.get(`/api/product/${match.params.id}`);
-			setProduct(data);
-		};
-		fetchProduct();
-	}, [match]);
+		dispatch(listProductDetails(match.params.id));
+	}, [dispatch, match]);
 
 	return (
 		<>
 			<Link className="btn btn-light my-3" to="/">
 				Go Back
 			</Link>
-			{product ? (
+			{loading ? (
+				<Loader />
+			) : error ? (
+				<Message variant="danger">{error}</Message>
+			) : (
 				<Row>
 					<Col md={6}>
 						<Image src={product.image} alt={product.name} fluid />
@@ -45,7 +53,7 @@ export const ProductPage: React.FC<Props> = ({ match }) => {
 							</ListGroup.Item>
 							<ListGroup.Item>Price: ${product.price}</ListGroup.Item>
 							<ListGroup.Item>
-								Description: ${product.description}
+								Description: {product.description}
 							</ListGroup.Item>
 						</ListGroup>
 					</Col>
@@ -54,15 +62,16 @@ export const ProductPage: React.FC<Props> = ({ match }) => {
 							<ListGroup variant="flush">
 								<ListGroup.Item>
 									<Row>
-										<Col>Price :</Col>
+										<Col>Price:</Col>
 										<Col>
 											<strong>${product.price}</strong>
 										</Col>
 									</Row>
 								</ListGroup.Item>
+
 								<ListGroup.Item>
 									<Row>
-										<Col>Status :</Col>
+										<Col>Status:</Col>
 										<Col>
 											{product.countInStock > 0 ? 'In Stock' : 'Out Of Stock'}
 										</Col>
@@ -81,8 +90,6 @@ export const ProductPage: React.FC<Props> = ({ match }) => {
 						</Card>
 					</Col>
 				</Row>
-			) : (
-				<h2>Product Not Found</h2>
 			)}
 		</>
 	);
