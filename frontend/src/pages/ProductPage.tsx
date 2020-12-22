@@ -23,7 +23,7 @@ type Props = RouteComponentProps<MatchParams>;
 // type Props = RouteComponentProps<{ id: string }>;
 
 export const ProductPage: React.FC<Props> = ({ history, match }) => {
-	const [qty, setQty] = useState(0);
+	const [qty, setQty] = useState(1);
 
 	const dispatch = useDispatch();
 

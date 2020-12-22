@@ -5,9 +5,7 @@ import { rootReducer } from './reducers/rootReducer';
 import { ICartItem } from './types/cartTypes';
 
 const cartItemsFromStorage: ICartItem[] = localStorage.getItem('cartItems')
-	? // JSON.parse(localStorage.getItem('cartItems') || '[]')
-	  // JSON.parse(localStorage.getItem('cartItems')!)
-	  JSON.parse(localStorage.getItem('cartItems')!)
+	? JSON.parse(localStorage.getItem('cartItems')!)
 	: [];
 
 const initialState = {
