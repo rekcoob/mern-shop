@@ -7,7 +7,7 @@ export interface IUserInfo {
 	_id: string;
 	name: string;
 	email: string;
-	password: string;
+	token: string;
 	isAdmin: boolean;
 }
 
@@ -15,7 +15,7 @@ export interface IUserInfo {
  * All Products List
  */
 export type UserLoginState = {
-	userInfo: any;
+	userInfo: IUserInfo;
 	loading: boolean;
 	error?: string;
 };
@@ -24,7 +24,7 @@ interface UserLoginRequestAction {
 }
 interface UserLoginSuccessAction {
 	type: typeof USER_LOGIN_SUCCESS;
-	payload: any;
+	payload: IUserInfo;
 }
 interface UserLoginFailAction {
 	type: typeof USER_LOGIN_FAIL;

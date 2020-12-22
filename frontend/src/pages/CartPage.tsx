@@ -1,11 +1,5 @@
 import React, { useEffect } from 'react';
-import {
-	Link,
-	RouteComponentProps,
-	useHistory,
-	useLocation,
-	useParams,
-} from 'react-router-dom';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Row,
