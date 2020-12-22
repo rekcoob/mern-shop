@@ -1,5 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
-import { IUser } from '../types';
+import bcrypt from 'bcryptjs';
+// import { IUser } from '../types';
 
 const userSchema = new Schema(
 	{
@@ -27,4 +28,16 @@ const userSchema = new Schema(
 	}
 );
 
-export default model<Document<IUser>>('User', userSchema);
+userSchema.methods.matchPassword = async function (enteredPassword: string) {
+	return await bcrypt.compare(enteredPassword, this.password);
+};
+
+interface IUser extends Document {
+	name: string;
+	email: string;
+	password: string;
+	isAdmin: boolean;
+	matchPassword(enteredPassword: string): Promise<boolean>;
+}
+
+export default model<IUser>('User', userSchema);

@@ -6,7 +6,7 @@ import Product from '../models/productModel';
  * @route   GET /api/products
  * @access  Public
  */
-const getProducts = asyncHandler(async (req, res) => {
+const getProducts = asyncHandler(async (_, res) => {
 	const products = await Product.find({});
 	// throw new Error('Some error');
 
