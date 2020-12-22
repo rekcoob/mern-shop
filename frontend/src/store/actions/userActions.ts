@@ -3,6 +3,7 @@ import {
 	USER_LOGIN_FAIL,
 	USER_LOGIN_REQUEST,
 	USER_LOGIN_SUCCESS,
+	USER_LOGOUT,
 } from '../types/userTypes';
 import { AppThunk } from '../types/rootTypes';
 
@@ -41,4 +42,9 @@ export const login = (email: string, password: string): AppThunk => async (
 					: error.message,
 		});
 	}
+};
+
+export const logout = (): AppThunk => (dispatch) => {
+	localStorage.removeItem('userInfo');
+	dispatch({ type: USER_LOGOUT });
 };
