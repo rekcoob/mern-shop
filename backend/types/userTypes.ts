@@ -5,7 +5,7 @@ export interface IUser {
 	name: string;
 	email: string;
 	password: string;
-	isAdmin: boolean;
+	isAdmin?: boolean;
 }
 
 export interface IRequestWithUser extends Request {

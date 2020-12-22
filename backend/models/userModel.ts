@@ -1,6 +1,6 @@
 import { model, Schema, Document } from 'mongoose';
 import bcrypt from 'bcryptjs';
-// import { IUser } from '../types';
+import { IUser } from '../types';
 
 const userSchema = new Schema(
 	{
@@ -32,12 +32,16 @@ userSchema.methods.matchPassword = async function (enteredPassword: string) {
 	return await bcrypt.compare(enteredPassword, this.password);
 };
 
-interface IUser extends Document {
-	name: string;
-	email: string;
-	password: string;
-	isAdmin: boolean;
+userSchema.pre<IUserModel>('save', async function (next) {
+	if (!this.isModified('password')) {
+		next();
+	}
+	const salt = await bcrypt.genSalt(10);
+	this.password = await bcrypt.hash(this.password, salt);
+});
+
+interface IUserModel extends IUser, Document {
 	matchPassword(enteredPassword: string): Promise<boolean>;
 }
 
-export default model<IUser>('User', userSchema);
+export default model<IUserModel>('User', userSchema);
