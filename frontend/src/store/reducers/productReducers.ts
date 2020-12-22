@@ -10,13 +10,13 @@ import {
 	ProductDetailsActionTypes,
 } from '../types/productTypes';
 
-const initialState: ProductListState = {
+const initialProductListState: ProductListState = {
 	products: [],
 	loading: false,
 };
 
 export const productListReducer = (
-	state = { products: [] },
+	state = initialProductListState,
 	action: ProductActionTypes
 ) => {
 	switch (action.type) {
