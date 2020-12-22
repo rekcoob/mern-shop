@@ -1,5 +1,11 @@
 import React, { useEffect } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import {
+	Link,
+	RouteComponentProps,
+	useHistory,
+	useLocation,
+	useParams,
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Row,
@@ -14,32 +20,38 @@ import { Message } from '../components/Message';
 import { addToCart, removeFromCart } from '../store/actions/cartActions';
 import { RootState } from '../store/types/rootTypes';
 
-type Props = RouteComponentProps<{ id: string }>;
-
-export const CartPage: React.FC<Props> = ({ match, location, history }) => {
+export const CartPage: React.FC = () => {
 	// get current id from url
-	const productId = match.params.id;
+	const { id } = useParams<{ id: string }>();
+	// const productId = match.params.id;
+
+	const location = useLocation();
 	// get quantity from query string
 	// change qty=2 to number 2
-	const qty = location.search ? Number(location.search.split('=')[1]) : 1;
+	const qty = location.search
+		? Number(new URLSearchParams(location.search).get('qty'))
+		: 1;
+	// const qty = location.search ? Number(location.search.split('=')[1]) : 1;
 
 	const dispatch = useDispatch();
+
+	const history = useHistory();
 
 	const cart = useSelector((state: RootState) => state.cart);
 	const { cartItems } = cart;
 
 	useEffect(() => {
-		if (productId) {
-			dispatch(addToCart(productId, qty));
+		if (id) {
+			dispatch(addToCart(id, qty));
 		}
-	}, [dispatch, productId, qty]);
-
-	const removeFromCartHandler = (id: string) => {
-		dispatch(removeFromCart(id));
-	};
+	}, [dispatch, id, qty]);
 
 	const checkoutHandler = () => {
 		history.push('/login?redirect=shipping');
+	};
+
+	const removeFromCartHandler = (id: string) => {
+		dispatch(removeFromCart(id));
 	};
 
 	return (

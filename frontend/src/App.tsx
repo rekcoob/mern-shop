@@ -13,9 +13,15 @@ const App: React.FC = () => {
 			<Header />
 			<main className="py-3">
 				<Container>
-					<Route exact path="/" component={HomePage} />
-					<Route path="/product/:id" component={ProductPage} />
-					<Route path="/cart/:id?" component={CartPage} />
+					<Route exact path="/">
+						<HomePage />
+					</Route>
+					<Route path="/product/:id">
+						<ProductPage />
+					</Route>
+					<Route path="/cart/:id?">
+						<CartPage />
+					</Route>
 				</Container>
 			</main>
 			<Footer />

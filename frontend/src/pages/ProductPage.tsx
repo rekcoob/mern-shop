@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Link, RouteComponentProps } from 'react-router-dom';
+import {
+	Link,
+	RouteComponentProps,
+	useHistory,
+	useParams,
+} from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Row,
@@ -16,14 +21,16 @@ import { Rating } from '../components/Rating';
 import { listProductDetails } from '../store/actions/productActions';
 import { RootState } from '../store/types/rootTypes';
 
-type MatchParams = {
-	id: string;
-};
-type Props = RouteComponentProps<MatchParams>;
+// type MatchParams = {
+// 	id: string;
+// };
+// type Props = RouteComponentProps<MatchParams>;
 // type Props = RouteComponentProps<{ id: string }>;
 
-export const ProductPage: React.FC<Props> = ({ history, match }) => {
+export const ProductPage: React.FC = () => {
 	const [qty, setQty] = useState(1);
+	const { id } = useParams<{ id: string }>();
+	const history = useHistory();
 
 	const dispatch = useDispatch();
 
@@ -33,11 +40,11 @@ export const ProductPage: React.FC<Props> = ({ history, match }) => {
 	const { loading, error, product } = productDetails;
 
 	useEffect(() => {
-		dispatch(listProductDetails(match.params.id));
-	}, [dispatch, match]);
+		dispatch(listProductDetails(id));
+	}, [dispatch, id]);
 
 	const addToCartHandler = () => {
-		history.push(`/cart/${match.params.id}?qty=${qty}`);
+		history.push(`/cart/${id}?qty=${qty}`);
 	};
 
 	return (
