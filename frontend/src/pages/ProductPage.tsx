@@ -16,19 +16,13 @@ import { Rating } from '../components/Rating';
 import { listProductDetails } from '../store/actions/productActions';
 import { RootState } from '../store/types/rootTypes';
 
-// type MatchParams = {
-// 	id: string;
-// };
-// type Props = RouteComponentProps<MatchParams>;
-// type Props = RouteComponentProps<{ id: string }>;
-
 export const ProductPage: React.FC = () => {
 	const [qty, setQty] = useState(1);
+
 	const { id } = useParams<{ id: string }>();
 	const history = useHistory();
 
 	const dispatch = useDispatch();
-
 	const productDetails = useSelector(
 		(state: RootState) => state.productDetails
 	);

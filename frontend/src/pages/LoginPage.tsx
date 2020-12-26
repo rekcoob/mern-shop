@@ -16,9 +16,6 @@ export const LoginPage: React.FC = () => {
 	const history = useHistory();
 
 	const dispatch = useDispatch();
-	// const userLogin = useSelector((state: RootState) => state.userLogin);
-	// const { loading, error, userInfo } = userLogin;
-
 	const userAuth = useSelector((state: RootState) => state.userAuth);
 	const { loading, error, userInfo } = userAuth;
 

@@ -19,12 +19,6 @@ export const RegisterPage = () => {
 	const history = useHistory();
 
 	const dispatch = useDispatch();
-
-	// const userRegister = useSelector((state: RootState) => state.userRegister);
-	// const { loading, error } = userRegister;
-	// const userLogin = useSelector((state: RootState) => state.userLogin);
-	// const { userInfo } = userLogin;
-
 	const userAuth = useSelector((state: RootState) => state.userAuth);
 	const { loading, error, userInfo } = userAuth;
 
