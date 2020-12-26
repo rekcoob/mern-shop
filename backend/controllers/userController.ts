@@ -61,7 +61,7 @@ const registerUser = asyncHandler(async (req, res) => {
 });
 
 /**
- * @desc    Get user profile
+ * @desc    Get User Profile
  * @route   GET /api/users/profile
  * @access  Private
  */
@@ -81,4 +81,34 @@ const getUserProfile = asyncHandler(async (req: IRequestWithUser, res) => {
 	}
 });
 
-export { loginUser, registerUser, getUserProfile };
+/**
+ * @desc    Update User Profile
+ * @route   PUT /api/users/profile
+ * @access  Private
+ */
+const updateUserProfile = asyncHandler(async (req: IRequestWithUser, res) => {
+	const user = await User.findById(req.user!._id);
+
+	if (user) {
+		user.name = req.body.name || user.name;
+		user.email = req.body.email || user.email;
+		if (req.body.password) {
+			user.password = req.body.password;
+		}
+
+		const updatedUser = await user.save();
+
+		res.json({
+			_id: updatedUser.id,
+			name: updatedUser.name,
+			email: updatedUser.email,
+			isAdmin: updatedUser.isAdmin,
+			token: generateToken(updatedUser._id),
+		});
+	} else {
+		res.status(404);
+		throw new Error('User not found');
+	}
+});
+
+export { loginUser, registerUser, getUserProfile, updateUserProfile };
