@@ -25,4 +25,5 @@ yarn add -D @types/bcryptjs
 yarn add express-async-handler
 
 yarn add jsonwebtoken
-#32
+
+#46 4.02

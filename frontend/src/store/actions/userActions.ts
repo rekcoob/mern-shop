@@ -4,38 +4,43 @@ import {
 	USER_LOGIN_REQUEST,
 	USER_LOGIN_SUCCESS,
 	USER_LOGOUT,
+	USER_REGISTER_FAIL,
+	USER_REGISTER_REQUEST,
+	USER_REGISTER_SUCCESS,
+	USER_AUTH_FAIL,
+	USER_AUTH_REQUEST,
+	USER_AUTH_SUCCESS,
+	USER_AUTH_LOGOUT,
 } from '../types/userTypes';
 import { AppThunk } from '../types/rootTypes';
 
+const config = {
+	headers: {
+		'Content-Type': 'application/json',
+	},
+};
+
+// Login User
 export const login = (email: string, password: string): AppThunk => async (
 	dispatch
 ) => {
 	try {
 		dispatch({
-			type: USER_LOGIN_REQUEST,
+			type: USER_AUTH_REQUEST,
 		});
-
-		const config = {
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		};
-
 		const { data } = await axios.post(
 			'/api/users/login',
 			{ email, password },
 			config
 		);
-
 		dispatch({
-			type: USER_LOGIN_SUCCESS,
+			type: USER_AUTH_SUCCESS,
 			payload: data,
 		});
-
 		localStorage.setItem('userInfo', JSON.stringify(data));
 	} catch (error) {
 		dispatch({
-			type: USER_LOGIN_FAIL,
+			type: USER_AUTH_FAIL,
 			payload:
 				error.response && error.response.data.message
 					? error.response.data.message
@@ -44,7 +49,43 @@ export const login = (email: string, password: string): AppThunk => async (
 	}
 };
 
+// Logout User
 export const logout = (): AppThunk => (dispatch) => {
 	localStorage.removeItem('userInfo');
-	dispatch({ type: USER_LOGOUT });
+	dispatch({ type: USER_AUTH_LOGOUT });
+};
+
+// Register User
+export const register = (
+	name: string,
+	email: string,
+	password: string
+): AppThunk => async (dispatch) => {
+	try {
+		dispatch({
+			type: USER_AUTH_REQUEST,
+		});
+		const { data } = await axios.post(
+			'/api/users',
+			{ name, email, password },
+			config
+		);
+		dispatch({
+			type: USER_AUTH_SUCCESS,
+			payload: data,
+		});
+		// dispatch({
+		// 	type: USER_LOGIN_SUCCESS,
+		// 	payload: data,
+		// });
+		localStorage.setItem('userInfo', JSON.stringify(data));
+	} catch (error) {
+		dispatch({
+			type: USER_AUTH_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
 };

@@ -8,8 +8,12 @@ import { RootState } from '../store/types/rootTypes';
 export const Header: React.FC = () => {
 	const dispatch = useDispatch();
 
-	const userLogin = useSelector((state: RootState) => state.userLogin);
-	const { userInfo } = userLogin;
+	// const userLogin = useSelector((state: RootState) => state.userLogin);
+	// // const userRegister = useSelector((state: RootState) => state.userRegister);
+	// const { userInfo } = userLogin;
+	const userAuth = useSelector((state: RootState) => state.userAuth);
+	// const userRegister = useSelector((state: RootState) => state.userRegister);
+	const { userInfo } = userAuth;
 
 	const handleLogout = () => {
 		dispatch(logout());
