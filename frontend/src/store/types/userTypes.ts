@@ -92,7 +92,11 @@ interface UserUpdateProfileFailAction {
 	type: typeof USER_UPDATE_PROFILE_FAIL;
 	payload: string;
 }
+interface UserUpdateProfileResetAction {
+	type: typeof USER_UPDATE_PROFILE_RESET;
+}
 export type UserUpdateProfileActionTypes =
 	| UserUpdateProfileRequestAction
 	| UserUpdateProfileSuccessAction
-	| UserUpdateProfileFailAction;
+	| UserUpdateProfileFailAction
+	| UserUpdateProfileResetAction;

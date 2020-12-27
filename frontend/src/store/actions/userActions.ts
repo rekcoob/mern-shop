@@ -10,6 +10,7 @@ import {
 	USER_UPDATE_PROFILE_REQUEST,
 	USER_UPDATE_PROFILE_SUCCESS,
 	USER_UPDATE_PROFILE_FAIL,
+	USER_UPDATE_PROFILE_RESET,
 } from '../types/userTypes';
 import { AppThunk } from '../types/rootTypes';
 
@@ -132,6 +133,7 @@ export const updateUserProfile = (user: any): AppThunk => async (
 		dispatch({
 			type: USER_UPDATE_PROFILE_REQUEST,
 		});
+
 		const {
 			userAuth: { userInfo },
 		} = getState();
@@ -150,6 +152,11 @@ export const updateUserProfile = (user: any): AppThunk => async (
 			type: USER_UPDATE_PROFILE_SUCCESS,
 			payload: data,
 		});
+		dispatch({
+			type: USER_AUTH_SUCCESS,
+			payload: data,
+		});
+		localStorage.setItem('userInfo', JSON.stringify(data));
 	} catch (error) {
 		dispatch({
 			type: USER_UPDATE_PROFILE_FAIL,
