@@ -10,6 +10,7 @@ import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { ProfilePage } from './pages/ProfilePage';
 import { ShippingPage } from './pages/ShippingPage';
+import { PaymentMethodPage } from './pages/PaymentMethodPage';
 
 const App: React.FC = () => {
 	return (
@@ -19,6 +20,9 @@ const App: React.FC = () => {
 				<Container>
 					<Route path="/shipping">
 						<ShippingPage />
+					</Route>
+					<Route path="/payment">
+						<PaymentMethodPage />
 					</Route>
 					<Route path="/login">
 						<LoginPage />
