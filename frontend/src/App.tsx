@@ -9,6 +9,7 @@ import { CartPage } from './pages/CartPage';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { ProfilePage } from './pages/ProfilePage';
+import { ShippingPage } from './pages/ShippingPage';
 
 const App: React.FC = () => {
 	return (
@@ -16,6 +17,9 @@ const App: React.FC = () => {
 			<Header />
 			<main className="py-3">
 				<Container>
+					<Route path="/shipping">
+						<ShippingPage />
+					</Route>
 					<Route path="/login">
 						<LoginPage />
 					</Route>
