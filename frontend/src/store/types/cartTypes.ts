@@ -25,6 +25,7 @@ export interface IShippingAddress {
 export type CartState = {
 	cartItems: ICartItem[];
 	shippingAddress: IShippingAddress;
+	paymentMethod: string;
 };
 interface CartAddItemAction {
 	type: typeof CART_ADD_ITEM;

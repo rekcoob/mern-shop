@@ -11,6 +11,7 @@ import {
 const initialState: CartState = {
 	cartItems: [],
 	shippingAddress: <IShippingAddress>{}, // {} as IShippingAddress,
+	paymentMethod: 'PayPal',
 };
 
 export const cartReducer = (state = initialState, action: CartActionTypes) => {
