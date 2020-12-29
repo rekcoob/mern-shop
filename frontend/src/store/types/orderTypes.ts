@@ -4,6 +4,10 @@ export const ORDER_CREATE_REQUEST = 'ORDER_CREATE_REQUEST';
 export const ORDER_CREATE_SUCCESS = 'ORDER_CREATE_SUCCESS';
 export const ORDER_CREATE_FAIL = 'ORDER_CREATE_FAIL';
 
+export const ORDER_DETAILS_REQUEST = 'ORDER_DETAILS_REQUEST';
+export const ORDER_DETAILS_SUCCESS = 'ORDER_DETAILS_SUCCESS';
+export const ORDER_DETAILS_FAIL = 'ORDER_DETAILS_FAIL';
+
 export interface IOrder {
 	_id?: string;
 	orderItems: ICartItem[];
@@ -15,7 +19,10 @@ export interface IOrder {
 	totalPrice: number;
 }
 
-export type OrderState = {
+/**
+ *  Create Order
+ */
+export type CreateOrderState = {
 	order: IOrder;
 	success: boolean;
 	loading: boolean;
@@ -24,17 +31,43 @@ export type OrderState = {
 
 interface OrderCreateRequestAction {
 	type: typeof ORDER_CREATE_REQUEST;
-	payload: any;
 }
 interface OrderCreateSuccessAction {
 	type: typeof ORDER_CREATE_SUCCESS;
-	payload: any;
+	payload: IOrder;
 }
 interface OrderCreateFailAction {
 	type: typeof ORDER_CREATE_FAIL;
-	payload: any;
+	payload: string;
 }
-export type OrderActionTypes =
+export type OrderCreateActionTypes =
 	| OrderCreateRequestAction
 	| OrderCreateSuccessAction
 	| OrderCreateFailAction;
+
+/**
+ *  Order Details
+ */
+export type OrderDetailsState = {
+	orderItems: ICartItem[];
+	shippingAddress: IShippingAddress;
+	order: IOrder;
+	success: boolean;
+	loading: boolean;
+	error?: string;
+};
+interface OrderDetailsRequestAction {
+	type: typeof ORDER_DETAILS_REQUEST;
+}
+interface OrderDetailsSuccessAction {
+	type: typeof ORDER_DETAILS_SUCCESS;
+	payload: IOrder;
+}
+interface OrderDetailsFailAction {
+	type: typeof ORDER_DETAILS_FAIL;
+	payload: string;
+}
+export type OrderDetailsActionTypes =
+	| OrderDetailsRequestAction
+	| OrderDetailsSuccessAction
+	| OrderDetailsFailAction;

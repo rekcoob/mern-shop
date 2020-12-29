@@ -17,7 +17,7 @@ export const CheckoutSteps: React.FC<Props> = ({
 }) => {
 	return (
 		<Nav className="justify-content-center mb-4">
-			<Nav.Item>
+			{/* <Nav.Item>
 				{step1 ? (
 					<LinkContainer to="/login">
 						<Nav.Link>Sign In</Nav.Link>
@@ -25,7 +25,7 @@ export const CheckoutSteps: React.FC<Props> = ({
 				) : (
 					<Nav.Link disabled>Sign In</Nav.Link>
 				)}
-			</Nav.Item>
+			</Nav.Item> */}
 			<Nav.Item>
 				{step2 ? (
 					<LinkContainer to="/shipping">
