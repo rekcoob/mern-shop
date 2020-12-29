@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { Button, Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Message } from '../components/Message';
 import { CheckoutSteps } from '../components/CheckoutSteps';
+import { createOrder } from '../store/actions/orderActions';
 import { RootState } from '../store/types/rootTypes';
 
 export const PlaceOrderPage: React.FC = () => {
+	const dispatch = useDispatch();
+	const history = useHistory();
 	const cart = useSelector((state: RootState) => state.cart);
 
 	//   Calculate prices
@@ -20,18 +23,34 @@ export const PlaceOrderPage: React.FC = () => {
 		)
 	);
 
-	const shippingPrice = addDecimals(itemsPrice > 100 ? 0 : 100);
+	const shippingPrice = Number(addDecimals(itemsPrice > 100 ? 0 : 100));
 
-	const taxPrice = addDecimals(Number((0.15 * itemsPrice).toFixed(2)));
+	const taxPrice = Number(addDecimals(Number((0.15 * itemsPrice).toFixed(2))));
 
-	const totalPrice = (
-		Number(itemsPrice) +
-		Number(shippingPrice) +
-		Number(taxPrice)
-	).toFixed(2);
+	const totalPrice = Number((itemsPrice + shippingPrice + taxPrice).toFixed(2));
+
+	const orderCreate = useSelector((state: RootState) => state.orderCreate);
+	const { order, success, error } = orderCreate;
+
+	useEffect(() => {
+		if (success) {
+			history.push(`/order/${order._id}`);
+		}
+		// eslint-disable-next-line
+	}, [history, success]);
 
 	const handlePlaceOrder = () => {
-		console.log('order');
+		dispatch(
+			createOrder({
+				orderItems: cart.cartItems,
+				shippingAddress: cart.shippingAddress,
+				paymentMethod: cart.paymentMethod,
+				itemsPrice: itemsPrice,
+				shippingPrice: shippingPrice,
+				taxPrice: taxPrice,
+				totalPrice: totalPrice,
+			})
+		);
 	};
 
 	return (
@@ -118,6 +137,9 @@ export const PlaceOrderPage: React.FC = () => {
 									<Col>Total</Col>
 									<Col>${totalPrice}</Col>
 								</Row>
+							</ListGroup.Item>
+							<ListGroup.Item>
+								{error && <Message variant="danger">{error}</Message>}
 							</ListGroup.Item>
 							<ListGroup.Item>
 								<Button
