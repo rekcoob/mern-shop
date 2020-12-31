@@ -1,13 +1,17 @@
 import { ProductDetailsState, ProductListState } from './productTypes';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
-import { CartState, CartStateWithPrices } from './cartTypes';
+import { CartStateWithPrices } from './cartTypes';
 import {
 	UserAuthState,
 	UserDetailsState,
 	UserUpdateProfileState,
 } from './userTypes';
-import { CreateOrderState, OrderDetailsState } from './orderTypes';
+import {
+	CreateOrderState,
+	OrderDetailsState,
+	OrderPayState,
+} from './orderTypes';
 
 export interface RootState {
 	productList: ProductListState;
@@ -19,6 +23,7 @@ export interface RootState {
 	userUpdateProfile: UserUpdateProfileState;
 	orderCreate: CreateOrderState;
 	orderDetails: OrderDetailsState;
+	orderPay: OrderPayState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<
