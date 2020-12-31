@@ -10,7 +10,7 @@ import {
 
 const initialState: CartState = {
 	cartItems: [],
-	shippingAddress: <IShippingAddress>{}, // {} as IShippingAddress,
+	shippingAddress: {} as IShippingAddress,
 	paymentMethod: 'PayPal',
 };
 

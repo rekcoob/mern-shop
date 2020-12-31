@@ -1,4 +1,5 @@
 import { ICartItem, IShippingAddress } from './cartTypes';
+import { IUserInfo } from './userTypes';
 
 export const ORDER_CREATE_REQUEST = 'ORDER_CREATE_REQUEST';
 export const ORDER_CREATE_SUCCESS = 'ORDER_CREATE_SUCCESS';
@@ -17,6 +18,14 @@ export interface IOrder {
 	shippingPrice: number;
 	taxPrice: number;
 	totalPrice: number;
+}
+
+export interface IOrderDetails extends IOrder {
+	user: IUserInfo;
+	isDelivered: boolean;
+	deliveredAt: string;
+	isPaid: boolean;
+	paidAt: string;
 }
 
 /**
@@ -51,7 +60,7 @@ export type OrderCreateActionTypes =
 export type OrderDetailsState = {
 	orderItems: ICartItem[];
 	shippingAddress: IShippingAddress;
-	order: IOrder;
+	order: IOrderDetails;
 	success: boolean;
 	loading: boolean;
 	error?: string;

@@ -66,7 +66,7 @@ export const getOrderDetails = (id: string): AppThunk => async (
 			},
 		};
 
-		const { data } = await axios.get(`/api/orders${id}`, config);
+		const { data } = await axios.get(`/api/orders/${id}`, config);
 
 		dispatch({
 			type: ORDER_DETAILS_SUCCESS,

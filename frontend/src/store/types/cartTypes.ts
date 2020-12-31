@@ -27,6 +27,14 @@ export type CartState = {
 	shippingAddress: IShippingAddress;
 	paymentMethod: string;
 };
+
+export type CartStateWithPrices = CartState & {
+	itemsPrice: number;
+	shippingPrice: number;
+	taxPrice: number;
+	totalPrice: number;
+};
+
 interface CartAddItemAction {
 	type: typeof CART_ADD_ITEM;
 	payload: ICartItem;

@@ -12,6 +12,7 @@ import { ProfilePage } from './pages/ProfilePage';
 import { ShippingPage } from './pages/ShippingPage';
 import { PaymentMethodPage } from './pages/PaymentMethodPage';
 import { PlaceOrderPage } from './pages/PlaceOrderPage';
+import { OrderPage } from './pages/OrderPage';
 
 const App: React.FC = () => {
 	return (
@@ -19,6 +20,9 @@ const App: React.FC = () => {
 			<Header />
 			<main className="py-3">
 				<Container>
+					<Route path="/order/:id">
+						<OrderPage />
+					</Route>
 					<Route path="/shipping">
 						<ShippingPage />
 					</Route>

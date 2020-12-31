@@ -2,21 +2,24 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer } from './reducers/rootReducer';
-import { ICartItem } from './types/cartTypes';
+import { ICartItem, IShippingAddress } from './types/cartTypes';
+import { IUserInfo } from './types/userTypes';
 
 const cartItemsFromStorage: ICartItem[] = localStorage.getItem('cartItems')
 	? JSON.parse(localStorage.getItem('cartItems')!)
 	: [];
 
-const userInfoFromStorage = localStorage.getItem('userInfo')
+const userInfoFromStorage: IUserInfo = localStorage.getItem('userInfo')
 	? JSON.parse(localStorage.getItem('userInfo')!)
 	: null;
 
-const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
+const shippingAddressFromStorage: IShippingAddress = localStorage.getItem(
+	'shippingAddress'
+)
 	? JSON.parse(localStorage.getItem('shippingAddress')!)
 	: {};
 
-const paymentMethodFromStorage = localStorage.getItem('paymentMethod')
+const paymentMethodFromStorage: string = localStorage.getItem('paymentMethod')
 	? JSON.parse(localStorage.getItem('paymentMethod')!)
 	: {};
 
