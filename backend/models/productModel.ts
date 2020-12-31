@@ -66,4 +66,6 @@ const productSchema = new Schema(
 	}
 );
 
-export default model<Document<IProduct>>('Product', productSchema);
+interface IProductModel extends IProduct, Document {}
+
+export default model<IProductModel>('Product', productSchema);

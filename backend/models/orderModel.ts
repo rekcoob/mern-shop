@@ -74,4 +74,6 @@ const orderSchema = new Schema(
 	}
 );
 
-export default model<Document<IOrder>>('Order', orderSchema);
+interface IOrderModel extends IOrder, Document {}
+
+export default model<IOrderModel>('Order', orderSchema);
