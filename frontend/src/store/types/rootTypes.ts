@@ -8,6 +8,7 @@ import {
 	UserDetailsState,
 	UserListState,
 	UserUpdateProfileState,
+	UserUpdateState,
 } from './userTypes';
 import {
 	CreateOrderState,
@@ -30,6 +31,7 @@ export interface RootState {
 	orderListMy: OrderListMyState;
 	userList: UserListState;
 	userDelete: UserDeleteState;
+	userUpdate: UserUpdateState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<

@@ -18,6 +18,11 @@ import {
 	USER_DELETE_REQUEST,
 	USER_DELETE_SUCCESS,
 	USER_DELETE_FAIL,
+	USER_UPDATE_FAIL,
+	USER_UPDATE_SUCCESS,
+	USER_UPDATE_REQUEST,
+	IUserInfo,
+	IUser,
 } from '../types/userTypes';
 import { ORDER_LIST_MY_RESET } from '../types/orderTypes';
 import { AppThunk } from '../types/rootTypes';
@@ -28,7 +33,7 @@ const config = {
 	},
 };
 
-// Login User
+// Login User | Public
 export const login = (email: string, password: string): AppThunk => async (
 	dispatch
 ) => {
@@ -66,7 +71,7 @@ export const logout = (): AppThunk => (dispatch) => {
 	dispatch({ type: USER_LIST_RESET });
 };
 
-// Register User
+// Register User | Public
 export const register = (
 	name: string,
 	email: string,
@@ -97,7 +102,7 @@ export const register = (
 	}
 };
 
-// Get User Profile
+// Get User Profile | Private | User
 export const getUserDetails = (id: string): AppThunk => async (
 	dispatch,
 	getState
@@ -135,7 +140,7 @@ export const getUserDetails = (id: string): AppThunk => async (
 	}
 };
 
-// Update User Profile
+// Update User Profile | Private | User
 export const updateUserProfile = (user: any): AppThunk => async (
 	dispatch,
 	getState
@@ -179,6 +184,7 @@ export const updateUserProfile = (user: any): AppThunk => async (
 	}
 };
 
+// Get All Users | Private | Admin
 export const listUsers = (): AppThunk => async (dispatch, getState) => {
 	try {
 		dispatch({
@@ -212,6 +218,7 @@ export const listUsers = (): AppThunk => async (dispatch, getState) => {
 	}
 };
 
+// Delete User | Private | Admin
 export const deleteUser = (id: string): AppThunk => async (
 	dispatch,
 	getState
@@ -237,6 +244,43 @@ export const deleteUser = (id: string): AppThunk => async (
 	} catch (error) {
 		dispatch({
 			type: USER_DELETE_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+};
+
+// Update User | Private | Admin
+export const updateUser = (user: IUser): AppThunk => async (
+	dispatch,
+	getState
+) => {
+	try {
+		dispatch({
+			type: USER_UPDATE_REQUEST,
+		});
+
+		const {
+			userAuth: { userInfo },
+		} = getState();
+
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${userInfo.token}`,
+			},
+		};
+
+		const { data } = await axios.put(`/api/users/${user._id}`, user, config);
+
+		dispatch({ type: USER_UPDATE_SUCCESS });
+
+		dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+	} catch (error) {
+		dispatch({
+			type: USER_UPDATE_FAIL,
 			payload:
 				error.response && error.response.data.message
 					? error.response.data.message

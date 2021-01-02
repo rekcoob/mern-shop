@@ -38,3 +38,5 @@ yarn add jsonwebtoken
 #91. Update Profile Page Success Message
 OrderController, getMyOrders, req: any
 strict.mode console deprecated
+rename IUserInfo to IUserToken ...
+#67. Admin User List show passwords

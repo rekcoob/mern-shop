@@ -22,12 +22,20 @@ export const USER_DELETE_REQUEST = 'USER_DELETE_REQUEST';
 export const USER_DELETE_SUCCESS = 'USER_DELETE_SUCCESS';
 export const USER_DELETE_FAIL = 'USER_DELETE_FAIL';
 
-export interface IUserInfo {
+export const USER_UPDATE_REQUEST = 'USER_UPDATE_REQUEST';
+export const USER_UPDATE_SUCCESS = 'USER_UPDATE_SUCCESS';
+export const USER_UPDATE_FAIL = 'USER_UPDATE_FAIL';
+export const USER_UPDATE_RESET = 'USER_UPDATE_RESET';
+
+export interface IUser {
 	_id: string;
 	name: string;
 	email: string;
-	token: string;
 	isAdmin: boolean;
+}
+
+export interface IUserInfo extends IUser {
+	token: string;
 }
 
 /**
@@ -165,3 +173,30 @@ export type UserDeleteActionTypes =
 	| UserDeleteRequestAction
 	| UserDeleteSuccessAction
 	| UserDeleteFailAction;
+
+/**
+ * Update User | Admin Only
+ */
+export type UserUpdateState = {
+	success: boolean;
+	loading: boolean;
+	error?: string;
+};
+interface UserUpdateRequestAction {
+	type: typeof USER_UPDATE_REQUEST;
+}
+interface UserUpdateSuccessAction {
+	type: typeof USER_UPDATE_SUCCESS;
+}
+interface UserUpdateFailAction {
+	type: typeof USER_UPDATE_FAIL;
+	payload: string;
+}
+interface UserUpdateResetAction {
+	type: typeof USER_UPDATE_RESET;
+}
+export type UserUpdateActionTypes =
+	| UserUpdateRequestAction
+	| UserUpdateSuccessAction
+	| UserUpdateFailAction
+	| UserUpdateResetAction;
