@@ -118,7 +118,7 @@ export const getUserDetails = (id: string): AppThunk => async (
 			},
 		};
 
-		const { data } = await axios.get(`api/users/${id}`, configWithToken);
+		const { data } = await axios.get(`/api/users/${id}`, configWithToken);
 
 		dispatch({
 			type: USER_DETAILS_SUCCESS,
@@ -155,7 +155,7 @@ export const updateUserProfile = (user: any): AppThunk => async (
 			},
 		};
 		const { data } = await axios.put(
-			`api/users/profile`,
+			`/api/users/profile`,
 			user,
 			configWithToken
 		);

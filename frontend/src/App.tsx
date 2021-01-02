@@ -14,6 +14,7 @@ import { PaymentMethodPage } from './pages/PaymentMethodPage';
 import { PlaceOrderPage } from './pages/PlaceOrderPage';
 import { OrderPage } from './pages/OrderPage';
 import { UserListPage } from './pages/UserListPage';
+import { UserEditPage } from './pages/UserEditPage';
 
 const App: React.FC = () => {
 	return (
@@ -50,6 +51,9 @@ const App: React.FC = () => {
 					</Route>
 					<Route path="/admin/userlist">
 						<UserListPage />
+					</Route>
+					<Route path="/admin/user/:id/edit">
+						<UserEditPage />
 					</Route>
 					<Route exact path="/">
 						<HomePage />
