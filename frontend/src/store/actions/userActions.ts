@@ -14,7 +14,7 @@ import {
 	USER_LIST_FAIL,
 	USER_LIST_SUCCESS,
 	USER_LIST_REQUEST,
-	IUserInfo,
+	USER_LIST_RESET,
 } from '../types/userTypes';
 import { ORDER_LIST_MY_RESET } from '../types/orderTypes';
 import { AppThunk } from '../types/rootTypes';
@@ -60,6 +60,7 @@ export const logout = (): AppThunk => (dispatch) => {
 	dispatch({ type: USER_AUTH_LOGOUT });
 	dispatch({ type: USER_DETAILS_RESET });
 	dispatch({ type: ORDER_LIST_MY_RESET });
+	dispatch({ type: USER_LIST_RESET });
 };
 
 // Register User

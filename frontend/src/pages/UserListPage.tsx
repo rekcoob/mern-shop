@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { LinkContainer } from 'react-router-bootstrap';
 import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,12 +10,20 @@ import { RootState } from '../store/types/rootTypes';
 
 export const UserListPage: React.FC = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 
 	const userList = useSelector((state: RootState) => state.userList);
 	const { loading, error, users } = userList;
 
+	const userAuth = useSelector((state: RootState) => state.userAuth);
+	const { userInfo } = userAuth;
+
 	useEffect(() => {
-		dispatch(listUsers());
+		if (userInfo && userInfo.isAdmin) {
+			dispatch(listUsers());
+		} else {
+			history.push('/login');
+		}
 	}, [dispatch]);
 
 	const handleDelete = (id: string) => {

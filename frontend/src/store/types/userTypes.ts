@@ -16,6 +16,7 @@ export const USER_UPDATE_PROFILE_RESET = 'USER_UPDATE_PROFILE_RESET';
 export const USER_LIST_REQUEST = 'USER_LIST_REQUEST';
 export const USER_LIST_SUCCESS = 'USER_LIST_SUCCESS';
 export const USER_LIST_FAIL = 'USER_LIST_FAIL';
+export const USER_LIST_RESET = 'USER_LIST_RESET';
 
 export interface IUserInfo {
 	_id: string;
@@ -129,7 +130,11 @@ interface UserListFailAction {
 	type: typeof USER_LIST_FAIL;
 	payload: string;
 }
+interface UserListResetAction {
+	type: typeof USER_LIST_RESET;
+}
 export type UserListActionTypes =
 	| UserListRequestAction
 	| UserListSuccessAction
-	| UserListFailAction;
+	| UserListFailAction
+	| UserListResetAction;
