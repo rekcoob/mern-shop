@@ -1,3 +1,4 @@
+import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
@@ -33,4 +34,13 @@ const protect = asyncHandler(async (req: IRequestWithUser, res, next) => {
 	}
 });
 
-export { protect };
+const admin = (req: IRequestWithUser, res: Response, next: NextFunction) => {
+	if (req.user && req.user.isAdmin) {
+		next();
+	} else {
+		res.status(401);
+		throw new Error('Not authorized as an admin');
+	}
+};
+
+export { protect, admin };
