@@ -14,6 +14,10 @@ export const ORDER_PAY_SUCCESS = 'ORDER_PAY_SUCCESS';
 export const ORDER_PAY_FAIL = 'ORDER_PAY_FAIL';
 export const ORDER_PAY_RESET = 'ORDER_PAY_RESET';
 
+export const ORDER_LIST_MY_REQUEST = 'ORDER_LIST_MY_REQUEST';
+export const ORDER_LIST_MY_SUCCESS = 'ORDER_LIST_MY_SUCCESS';
+export const ORDER_LIST_MY_FAIL = 'ORDER_LIST_MY_FAIL';
+
 export interface IOrder {
 	_id?: string;
 	orderItems: ICartItem[];
@@ -31,6 +35,7 @@ export interface IOrderDetails extends IOrder {
 	deliveredAt: string;
 	isPaid: boolean;
 	paidAt: string;
+	createdAt: string;
 }
 
 /**
@@ -112,3 +117,27 @@ export type OrderPayActionTypes =
 	| OrderPaySuccessAction
 	| OrderPayFailAction
 	| OrderPayResetAction;
+
+/**
+ *  Order List My Orders
+ */
+export type OrderListMyState = {
+	orders: IOrderDetails[];
+	loading: boolean;
+	error?: string;
+};
+interface OrderListMyRequestAction {
+	type: typeof ORDER_LIST_MY_REQUEST;
+}
+interface OrderListMySuccessAction {
+	type: typeof ORDER_LIST_MY_SUCCESS;
+	payload: IOrderDetails[];
+}
+interface OrderListMyFailAction {
+	type: typeof ORDER_LIST_MY_FAIL;
+	payload: string;
+}
+export type OrderListMyActionTypes =
+	| OrderListMyRequestAction
+	| OrderListMySuccessAction
+	| OrderListMyFailAction;

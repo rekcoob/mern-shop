@@ -26,5 +26,15 @@ yarn add express-async-handler
 
 yarn add jsonwebtoken
 
-#46 4.02
+## WorkFlow
+
+- create backend controller and route
+- create frontend constants
+- create frontend reducer
+-
+
+## Problems
+
 #91. Update Profile Page Success Message
+OrderController, getMyOrders, req: any
+strict.mode console deprecated

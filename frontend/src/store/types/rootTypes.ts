@@ -10,6 +10,7 @@ import {
 import {
 	CreateOrderState,
 	OrderDetailsState,
+	OrderListMyState,
 	OrderPayState,
 } from './orderTypes';
 
@@ -24,6 +25,7 @@ export interface RootState {
 	orderCreate: CreateOrderState;
 	orderDetails: OrderDetailsState;
 	orderPay: OrderPayState;
+	orderListMy: OrderListMyState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<
