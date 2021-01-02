@@ -13,6 +13,10 @@ export const USER_UPDATE_PROFILE_SUCCESS = 'USER_UPDATE_PROFILE_SUCCESS';
 export const USER_UPDATE_PROFILE_FAIL = 'USER_UPDATE_PROFILE_FAIL';
 export const USER_UPDATE_PROFILE_RESET = 'USER_UPDATE_PROFILE_RESET';
 
+export const USER_LIST_REQUEST = 'USER_LIST_REQUEST';
+export const USER_LIST_SUCCESS = 'USER_LIST_SUCCESS';
+export const USER_LIST_FAIL = 'USER_LIST_FAIL';
+
 export interface IUserInfo {
 	_id: string;
 	name: string;
@@ -105,3 +109,27 @@ export type UserUpdateProfileActionTypes =
 	| UserUpdateProfileSuccessAction
 	| UserUpdateProfileFailAction
 	| UserUpdateProfileResetAction;
+
+/**
+ * User List
+ */
+export type UserListState = {
+	users: IUserInfo[];
+	loading: boolean;
+	error?: string;
+};
+interface UserListRequestAction {
+	type: typeof USER_LIST_REQUEST;
+}
+interface UserListSuccessAction {
+	type: typeof USER_LIST_SUCCESS;
+	payload: IUserInfo[];
+}
+interface UserListFailAction {
+	type: typeof USER_LIST_FAIL;
+	payload: string;
+}
+export type UserListActionTypes =
+	| UserListRequestAction
+	| UserListSuccessAction
+	| UserListFailAction;

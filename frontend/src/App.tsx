@@ -13,6 +13,7 @@ import { ShippingPage } from './pages/ShippingPage';
 import { PaymentMethodPage } from './pages/PaymentMethodPage';
 import { PlaceOrderPage } from './pages/PlaceOrderPage';
 import { OrderPage } from './pages/OrderPage';
+import { UserListPage } from './pages/UserListPage';
 
 const App: React.FC = () => {
 	return (
@@ -46,6 +47,9 @@ const App: React.FC = () => {
 					</Route>
 					<Route path="/cart/:id?">
 						<CartPage />
+					</Route>
+					<Route path="/admin/userlist">
+						<UserListPage />
 					</Route>
 					<Route exact path="/">
 						<HomePage />

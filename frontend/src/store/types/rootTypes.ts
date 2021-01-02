@@ -5,6 +5,7 @@ import { CartStateWithPrices } from './cartTypes';
 import {
 	UserAuthState,
 	UserDetailsState,
+	UserListState,
 	UserUpdateProfileState,
 } from './userTypes';
 import {
@@ -26,6 +27,7 @@ export interface RootState {
 	orderDetails: OrderDetailsState;
 	orderPay: OrderPayState;
 	orderListMy: OrderListMyState;
+	userList: UserListState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<

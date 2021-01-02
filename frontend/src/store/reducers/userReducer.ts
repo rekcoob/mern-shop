@@ -1,19 +1,23 @@
 import {
-	UserAuthActionTypes,
-	UserDetailsActionTypes,
-	UserUpdateProfileActionTypes,
 	USER_AUTH_FAIL,
 	USER_AUTH_LOGOUT,
 	USER_AUTH_REQUEST,
 	USER_AUTH_SUCCESS,
+	UserAuthActionTypes,
 	USER_DETAILS_FAIL,
 	USER_DETAILS_REQUEST,
 	USER_DETAILS_SUCCESS,
 	USER_DETAILS_RESET,
+	UserDetailsActionTypes,
 	USER_UPDATE_PROFILE_FAIL,
 	USER_UPDATE_PROFILE_REQUEST,
 	USER_UPDATE_PROFILE_RESET,
 	USER_UPDATE_PROFILE_SUCCESS,
+	UserUpdateProfileActionTypes,
+	USER_LIST_REQUEST,
+	USER_LIST_SUCCESS,
+	USER_LIST_FAIL,
+	UserListActionTypes,
 } from '../types/userTypes';
 
 export const userAuthReducer = (state = {}, action: UserAuthActionTypes) => {
@@ -62,6 +66,22 @@ export const userUpdateProfileReducer = (
 			return { loading: false, error: action.payload };
 		case USER_UPDATE_PROFILE_RESET:
 			return {};
+		default:
+			return state;
+	}
+};
+
+export const userListReducer = (
+	state = { users: [] },
+	action: UserListActionTypes
+) => {
+	switch (action.type) {
+		case USER_LIST_REQUEST:
+			return { loading: true };
+		case USER_LIST_SUCCESS:
+			return { loading: false, users: action.payload };
+		case USER_LIST_FAIL:
+			return { loading: false, error: action.payload };
 		default:
 			return state;
 	}
