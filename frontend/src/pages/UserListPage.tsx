@@ -5,7 +5,7 @@ import { Table, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Message } from '../components/Message';
 import { Loader } from '../components/Loader';
-import { listUsers } from '../store/actions/userActions';
+import { deleteUser, listUsers } from '../store/actions/userActions';
 import { RootState } from '../store/types/rootTypes';
 
 export const UserListPage: React.FC = () => {
@@ -18,16 +18,21 @@ export const UserListPage: React.FC = () => {
 	const userAuth = useSelector((state: RootState) => state.userAuth);
 	const { userInfo } = userAuth;
 
+	const userDelete = useSelector((state: RootState) => state.userDelete);
+	const { success: successDelete } = userDelete;
+
 	useEffect(() => {
 		if (userInfo && userInfo.isAdmin) {
 			dispatch(listUsers());
 		} else {
 			history.push('/login');
 		}
-	}, [dispatch]);
+	}, [dispatch, successDelete, history, userInfo]);
 
 	const handleDelete = (id: string) => {
-		console.log('delete');
+		if (window.confirm('Are you sure?')) {
+			dispatch(deleteUser(id));
+		}
 	};
 
 	return (

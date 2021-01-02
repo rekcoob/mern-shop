@@ -4,6 +4,7 @@ import { ThunkAction } from 'redux-thunk';
 import { CartStateWithPrices } from './cartTypes';
 import {
 	UserAuthState,
+	UserDeleteState,
 	UserDetailsState,
 	UserListState,
 	UserUpdateProfileState,
@@ -28,6 +29,7 @@ export interface RootState {
 	orderPay: OrderPayState;
 	orderListMy: OrderListMyState;
 	userList: UserListState;
+	userDelete: UserDeleteState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<

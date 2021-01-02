@@ -19,6 +19,10 @@ import {
 	USER_LIST_FAIL,
 	USER_LIST_RESET,
 	UserListActionTypes,
+	USER_DELETE_REQUEST,
+	USER_DELETE_SUCCESS,
+	USER_DELETE_FAIL,
+	UserDeleteActionTypes,
 } from '../types/userTypes';
 
 export const userAuthReducer = (state = {}, action: UserAuthActionTypes) => {
@@ -85,6 +89,22 @@ export const userListReducer = (
 			return { loading: false, error: action.payload };
 		case USER_LIST_RESET:
 			return { users: [] };
+		default:
+			return state;
+	}
+};
+
+export const userDeleteReducer = (
+	state = {},
+	action: UserDeleteActionTypes
+) => {
+	switch (action.type) {
+		case USER_DELETE_REQUEST:
+			return { loading: true };
+		case USER_DELETE_SUCCESS:
+			return { loading: false, success: true };
+		case USER_DELETE_FAIL:
+			return { loading: false, error: action.payload };
 		default:
 			return state;
 	}

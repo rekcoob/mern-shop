@@ -18,6 +18,10 @@ export const USER_LIST_SUCCESS = 'USER_LIST_SUCCESS';
 export const USER_LIST_FAIL = 'USER_LIST_FAIL';
 export const USER_LIST_RESET = 'USER_LIST_RESET';
 
+export const USER_DELETE_REQUEST = 'USER_DELETE_REQUEST';
+export const USER_DELETE_SUCCESS = 'USER_DELETE_SUCCESS';
+export const USER_DELETE_FAIL = 'USER_DELETE_FAIL';
+
 export interface IUserInfo {
 	_id: string;
 	name: string;
@@ -112,7 +116,7 @@ export type UserUpdateProfileActionTypes =
 	| UserUpdateProfileResetAction;
 
 /**
- * User List
+ * User List | Admin Only
  */
 export type UserListState = {
 	users: IUserInfo[];
@@ -138,3 +142,26 @@ export type UserListActionTypes =
 	| UserListSuccessAction
 	| UserListFailAction
 	| UserListResetAction;
+
+/**
+ * Delete User | Admin Only
+ */
+export type UserDeleteState = {
+	success: boolean;
+	loading: boolean;
+	error?: string;
+};
+interface UserDeleteRequestAction {
+	type: typeof USER_DELETE_REQUEST;
+}
+interface UserDeleteSuccessAction {
+	type: typeof USER_DELETE_SUCCESS;
+}
+interface UserDeleteFailAction {
+	type: typeof USER_DELETE_FAIL;
+	payload: string;
+}
+export type UserDeleteActionTypes =
+	| UserDeleteRequestAction
+	| UserDeleteSuccessAction
+	| UserDeleteFailAction;
