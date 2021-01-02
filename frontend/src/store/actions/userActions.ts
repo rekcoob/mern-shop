@@ -7,10 +7,12 @@ import {
 	USER_DETAILS_REQUEST,
 	USER_DETAILS_SUCCESS,
 	USER_DETAILS_FAIL,
+	USER_DETAILS_RESET,
 	USER_UPDATE_PROFILE_REQUEST,
 	USER_UPDATE_PROFILE_SUCCESS,
 	USER_UPDATE_PROFILE_FAIL,
 } from '../types/userTypes';
+import { ORDER_LIST_MY_RESET } from '../types/orderTypes';
 import { AppThunk } from '../types/rootTypes';
 
 const config = {
@@ -52,6 +54,8 @@ export const login = (email: string, password: string): AppThunk => async (
 export const logout = (): AppThunk => (dispatch) => {
 	localStorage.removeItem('userInfo');
 	dispatch({ type: USER_AUTH_LOGOUT });
+	dispatch({ type: USER_DETAILS_RESET });
+	dispatch({ type: ORDER_LIST_MY_RESET });
 };
 
 // Register User

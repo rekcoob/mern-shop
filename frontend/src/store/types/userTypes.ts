@@ -6,6 +6,7 @@ export const USER_AUTH_LOGOUT = 'USER_AUTH_LOGOUT';
 export const USER_DETAILS_REQUEST = 'USER_DETAILS_REQUEST';
 export const USER_DETAILS_SUCCESS = 'USER_DETAILS_SUCCESS';
 export const USER_DETAILS_FAIL = 'USER_DETAILS_FAIL';
+export const USER_DETAILS_RESET = 'USER_DETAILS_RESET';
 
 export const USER_UPDATE_PROFILE_REQUEST = 'USER_UPDATE_PROFILE_REQUEST';
 export const USER_UPDATE_PROFILE_SUCCESS = 'USER_UPDATE_PROFILE_SUCCESS';
@@ -67,10 +68,14 @@ interface UserDetailsFailAction {
 	type: typeof USER_DETAILS_FAIL;
 	payload: string;
 }
+interface UserDetailsResetAction {
+	type: typeof USER_DETAILS_RESET;
+}
 export type UserDetailsActionTypes =
 	| UserDetailsRequestAction
 	| UserDetailsSuccessAction
-	| UserDetailsFailAction;
+	| UserDetailsFailAction
+	| UserDetailsResetAction;
 
 /**
  * User Update Profile
