@@ -13,6 +13,9 @@ import {
 	ORDER_LIST_MY_REQUEST,
 	ORDER_LIST_MY_SUCCESS,
 	ORDER_LIST_MY_FAIL,
+	ORDER_LIST_ALL_REQUEST,
+	ORDER_LIST_ALL_SUCCESS,
+	ORDER_LIST_ALL_FAIL,
 } from '../types/orderTypes';
 import { AppThunk } from '../types/rootTypes';
 
@@ -155,6 +158,40 @@ export const listMyOrders = (): AppThunk => async (dispatch, getState) => {
 	} catch (error) {
 		dispatch({
 			type: ORDER_LIST_MY_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+};
+
+// Get All Orders | Admin Only
+export const listAllOrders = (): AppThunk => async (dispatch, getState) => {
+	try {
+		dispatch({
+			type: ORDER_LIST_ALL_REQUEST,
+		});
+
+		const {
+			userAuth: { userInfo },
+		} = getState();
+
+		const config = {
+			headers: {
+				Authorization: `Bearer ${userInfo.token}`,
+			},
+		};
+
+		const { data } = await axios.get(`/api/orders`, config);
+
+		dispatch({
+			type: ORDER_LIST_ALL_SUCCESS,
+			payload: data,
+		});
+	} catch (error) {
+		dispatch({
+			type: ORDER_LIST_ALL_FAIL,
 			payload:
 				error.response && error.response.data.message
 					? error.response.data.message

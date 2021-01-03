@@ -18,6 +18,7 @@ import {
 import {
 	orderCreateReducer,
 	orderDetailsReducer,
+	orderListAllReducer,
 	orderListMyReducer,
 	orderPayReducer,
 } from './orderReducers';
@@ -39,6 +40,7 @@ export const rootReducer = combineReducers({
 	productDelete: productDeleteReducer,
 	productCreate: productCreateReducer,
 	productUpdate: productUpdateReducer,
+	orderListAll: orderListAllReducer,
 });
 
 export type RootReducer = ReturnType<typeof rootReducer>;

@@ -17,6 +17,10 @@ import {
 	ORDER_LIST_MY_FAIL,
 	ORDER_LIST_MY_RESET,
 	OrderListMyActionTypes,
+	ORDER_LIST_ALL_FAIL,
+	ORDER_LIST_ALL_SUCCESS,
+	ORDER_LIST_ALL_REQUEST,
+	OrderListAllActionTypes,
 } from '../types/orderTypes';
 
 export const orderCreateReducer = (
@@ -113,6 +117,30 @@ export const orderListMyReducer = (
 			};
 		case ORDER_LIST_MY_RESET:
 			return { orders: [] };
+		default:
+			return state;
+	}
+};
+
+export const orderListAllReducer = (
+	state = { orders: [] },
+	action: OrderListAllActionTypes
+) => {
+	switch (action.type) {
+		case ORDER_LIST_ALL_REQUEST:
+			return {
+				loading: true,
+			};
+		case ORDER_LIST_ALL_SUCCESS:
+			return {
+				loading: false,
+				orders: action.payload,
+			};
+		case ORDER_LIST_ALL_FAIL:
+			return {
+				loading: false,
+				error: action.payload,
+			};
 		default:
 			return state;
 	}
