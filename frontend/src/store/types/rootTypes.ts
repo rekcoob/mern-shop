@@ -1,4 +1,5 @@
 import {
+	ProductCreateState,
 	ProductDeleteState,
 	ProductDetailsState,
 	ProductListState,
@@ -37,6 +38,7 @@ export interface RootState {
 	userDelete: UserDeleteState;
 	userUpdate: UserUpdateState;
 	productDelete: ProductDeleteState;
+	productCreate: ProductCreateState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<
