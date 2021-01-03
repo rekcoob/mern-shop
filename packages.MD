@@ -26,6 +26,11 @@ yarn add express-async-handler
 
 yarn add jsonwebtoken
 
+### Image Uploads
+
+yarn add multer
+yarn add -D @types/multer
+
 ## WorkFlow
 
 - create backend controller and route
@@ -40,3 +45,8 @@ OrderController, getMyOrders, req: any
 strict.mode console deprecated
 rename IUserInfo to IUserToken ...
 #67. Admin User List show passwords
+test creditcard
+#80.heroku image reset
+https://www.udemy.com/course/mern-ecommerce/learn/lecture/22498988#questions/12893594
+#80.DeleteImageWithDeleteFile
+#80.Same Image Size In Bootstrap

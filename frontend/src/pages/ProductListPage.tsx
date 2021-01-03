@@ -41,7 +41,7 @@ export const ProductListPage: React.FC = () => {
 
 	useEffect(() => {
 		dispatch({ type: PRODUCT_CREATE_RESET });
-		if (!userInfo.isAdmin) {
+		if (!userInfo || !userInfo.isAdmin) {
 			history.push('/login');
 		}
 		if (successCreate) {
@@ -80,9 +80,8 @@ export const ProductListPage: React.FC = () => {
 					</Button>
 				</Col>
 			</Row>
-			{loadingDelete && <Loader />}
+			{loadingDelete || (loadingCreate && <Loader />)}
 			{errorDelete && <Message variant="danger">{errorDelete}</Message>}
-			{loadingCreate && <Loader />}
 			{errorCreate && <Message variant="danger">{errorCreate}</Message>}
 			{loading ? (
 				<Loader />
