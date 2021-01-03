@@ -1,5 +1,9 @@
 import { combineReducers } from 'redux';
-import { productListReducer, productDetailsReducer } from './productReducers';
+import {
+	productListReducer,
+	productDetailsReducer,
+	productDeleteReducer,
+} from './productReducers';
 import { cartReducer } from './cartReducer';
 import {
 	userAuthReducer,
@@ -30,6 +34,7 @@ export const rootReducer = combineReducers({
 	userList: userListReducer,
 	userDelete: userDeleteReducer,
 	userUpdate: userUpdateReducer,
+	productDelete: productDeleteReducer,
 });
 
 export type RootReducer = ReturnType<typeof rootReducer>;

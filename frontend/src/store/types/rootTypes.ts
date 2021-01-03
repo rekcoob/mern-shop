@@ -1,4 +1,8 @@
-import { ProductDetailsState, ProductListState } from './productTypes';
+import {
+	ProductDeleteState,
+	ProductDetailsState,
+	ProductListState,
+} from './productTypes';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { CartStateWithPrices } from './cartTypes';
@@ -32,6 +36,7 @@ export interface RootState {
 	userList: UserListState;
 	userDelete: UserDeleteState;
 	userUpdate: UserUpdateState;
+	productDelete: ProductDeleteState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<

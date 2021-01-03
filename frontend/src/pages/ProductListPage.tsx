@@ -5,7 +5,7 @@ import { Table, Button, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Message } from '../components/Message';
 import { Loader } from '../components/Loader';
-import { listProducts } from '../store/actions/productActions';
+import { listProducts, deleteProduct } from '../store/actions/productActions';
 import { RootState } from '../store/types/rootTypes';
 
 export const ProductListPage: React.FC = () => {
@@ -16,6 +16,13 @@ export const ProductListPage: React.FC = () => {
 	const productList = useSelector((state: RootState) => state.productList);
 	const { loading, error, products } = productList;
 
+	const productDelete = useSelector((state: RootState) => state.productDelete);
+	const {
+		loading: loadingDelete,
+		error: errorDelete,
+		success: successDelete,
+	} = productDelete;
+
 	const userAuth = useSelector((state: RootState) => state.userAuth);
 	const { userInfo } = userAuth;
 
@@ -25,11 +32,11 @@ export const ProductListPage: React.FC = () => {
 		} else {
 			history.push('/login');
 		}
-	}, [dispatch, history, userInfo]);
+	}, [dispatch, history, userInfo, successDelete]);
 
 	const handleDelete = (id: string) => {
 		if (window.confirm('Are you sure')) {
-			// DELETE PRODUCTS
+			dispatch(deleteProduct(id));
 		}
 	};
 
@@ -49,6 +56,8 @@ export const ProductListPage: React.FC = () => {
 					</Button>
 				</Col>
 			</Row>
+			{loadingDelete && <Loader />}
+			{errorDelete && <Message variant="danger">{errorDelete}</Message>}
 			{loading ? (
 				<Loader />
 			) : error ? (
