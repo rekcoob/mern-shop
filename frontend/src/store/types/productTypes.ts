@@ -15,6 +15,11 @@ export const PRODUCT_CREATE_SUCCESS = 'PRODUCT_CREATE_SUCCESS';
 export const PRODUCT_CREATE_FAIL = 'PRODUCT_CREATE_FAIL';
 export const PRODUCT_CREATE_RESET = 'PRODUCT_CREATE_RESET';
 
+export const PRODUCT_UPDATE_REQUEST = 'PRODUCT_UPDATE_REQUEST';
+export const PRODUCT_UPDATE_SUCCESS = 'PRODUCT_UPDATE_SUCCESS';
+export const PRODUCT_UPDATE_FAIL = 'PRODUCT_UPDATE_FAIL';
+export const PRODUCT_UPDATE_RESET = 'PRODUCT_UPDATE_RESET';
+
 export interface IProduct {
 	_id: string;
 	name: string;
@@ -127,3 +132,32 @@ export type ProductCreateActionTypes =
 	| ProductCreateSuccessAction
 	| ProductCreateFailAction
 	| ProductCreateResetAction;
+
+/**
+ * Update Product | Admin only
+ */
+export type ProductUpdateState = {
+	product: IProduct;
+	success: boolean;
+	loading: boolean;
+	error?: string;
+};
+interface ProductUpdateRequestAction {
+	type: typeof PRODUCT_UPDATE_REQUEST;
+}
+interface ProductUpdateSuccessAction {
+	type: typeof PRODUCT_UPDATE_SUCCESS;
+	payload: IProduct;
+}
+interface ProductUpdateFailAction {
+	type: typeof PRODUCT_UPDATE_FAIL;
+	payload: string;
+}
+interface ProductUpdateResetAction {
+	type: typeof PRODUCT_UPDATE_RESET;
+}
+export type ProductUpdateActionTypes =
+	| ProductUpdateRequestAction
+	| ProductUpdateSuccessAction
+	| ProductUpdateFailAction
+	| ProductUpdateResetAction;

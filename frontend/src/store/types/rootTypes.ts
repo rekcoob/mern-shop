@@ -3,6 +3,7 @@ import {
 	ProductDeleteState,
 	ProductDetailsState,
 	ProductListState,
+	ProductUpdateState,
 } from './productTypes';
 import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
@@ -39,6 +40,7 @@ export interface RootState {
 	userUpdate: UserUpdateState;
 	productDelete: ProductDeleteState;
 	productCreate: ProductCreateState;
+	productUpdate: ProductUpdateState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<
