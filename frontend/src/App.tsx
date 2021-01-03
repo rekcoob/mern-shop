@@ -15,6 +15,7 @@ import { PlaceOrderPage } from './pages/PlaceOrderPage';
 import { OrderPage } from './pages/OrderPage';
 import { UserListPage } from './pages/UserListPage';
 import { UserEditPage } from './pages/UserEditPage';
+import { ProductListPage } from './pages/ProductListPage';
 
 const App: React.FC = () => {
 	return (
@@ -51,6 +52,9 @@ const App: React.FC = () => {
 					</Route>
 					<Route path="/admin/userlist">
 						<UserListPage />
+					</Route>
+					<Route path="/admin/productlist">
+						<ProductListPage />
 					</Route>
 					<Route path="/admin/user/:id/edit">
 						<UserEditPage />
