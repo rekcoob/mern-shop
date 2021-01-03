@@ -1,13 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { PayPalButton } from 'react-paypal-button-v2';
-import { Link, useParams } from 'react-router-dom';
-import { Row, Col, ListGroup, Image, Card } from 'react-bootstrap';
+import { Link, useHistory, useParams } from 'react-router-dom';
+import { Row, Col, ListGroup, Image, Card, Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Message } from '../components/Message';
 import { Loader } from '../components/Loader';
-import { getOrderDetails, payOrder } from '../store/actions/orderActions';
-import { ORDER_PAY_RESET } from '../store/types/orderTypes';
+import {
+	deliverOrder,
+	getOrderDetails,
+	payOrder,
+} from '../store/actions/orderActions';
+import {
+	ORDER_DELIVER_RESET,
+	ORDER_PAY_RESET,
+} from '../store/types/orderTypes';
 import { RootState } from '../store/types/rootTypes';
 
 declare global {
@@ -17,6 +24,7 @@ declare global {
 }
 export const OrderPage: React.FC = () => {
 	const { id: orderId } = useParams<{ id: string }>();
+	const history = useHistory();
 
 	const [sdkReady, setSdkReady] = useState(false);
 
@@ -27,6 +35,12 @@ export const OrderPage: React.FC = () => {
 
 	const orderPay = useSelector((state: RootState) => state.orderPay);
 	const { loading: loadingPay, success: successPay } = orderPay;
+
+	const orderDeliver = useSelector((state: RootState) => state.orderDeliver);
+	const { loading: loadingDeliver, success: successDeliver } = orderDeliver;
+
+	const userAuth = useSelector((state: RootState) => state.userAuth);
+	const { userInfo } = userAuth;
 
 	if (!loading) {
 		//   Calculate prices
@@ -41,6 +55,9 @@ export const OrderPage: React.FC = () => {
 	}
 
 	useEffect(() => {
+		if (!userInfo) {
+			history.push('/login');
+		}
 		const addPayPalScript = async () => {
 			const { data: clientId } = await axios.get('/api/config/paypal');
 			const script = document.createElement('script');
@@ -53,8 +70,9 @@ export const OrderPage: React.FC = () => {
 			document.body.appendChild(script);
 		};
 
-		if (!order || successPay || order._id !== orderId) {
+		if (!order || successPay || successDeliver || order._id !== orderId) {
 			dispatch({ type: ORDER_PAY_RESET });
+			dispatch({ type: ORDER_DELIVER_RESET });
 			dispatch(getOrderDetails(orderId));
 		} else if (!order.isPaid) {
 			if (!window.paypal) {
@@ -63,11 +81,14 @@ export const OrderPage: React.FC = () => {
 				setSdkReady(true);
 			}
 		}
-	}, [dispatch, order, orderId, successPay]);
+	}, [dispatch, history, userInfo, order, orderId, successPay, successDeliver]);
 
 	const handleSuccessPayment = (paymentResult: any) => {
-		console.log(paymentResult);
 		dispatch(payOrder(orderId, paymentResult));
+	};
+
+	const handleDeliver = () => {
+		dispatch(deliverOrder(order));
 	};
 
 	return loading ? (
@@ -193,6 +214,21 @@ export const OrderPage: React.FC = () => {
 									)}
 								</ListGroup.Item>
 							)}
+							{loadingDeliver && <Loader />}
+							{userInfo &&
+								userInfo.isAdmin &&
+								order.isPaid &&
+								!order.isDelivered && (
+									<ListGroup.Item>
+										<Button
+											type="button"
+											className="btn btn-block"
+											onClick={handleDeliver}
+										>
+											Mark As Delivered
+										</Button>
+									</ListGroup.Item>
+								)}
 						</ListGroup>
 					</Card>
 				</Col>

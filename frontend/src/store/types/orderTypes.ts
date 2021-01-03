@@ -23,6 +23,11 @@ export const ORDER_LIST_ALL_REQUEST = 'ORDER_LIST_ALL_REQUEST';
 export const ORDER_LIST_ALL_SUCCESS = 'ORDER_LIST_ALL_SUCCESS';
 export const ORDER_LIST_ALL_FAIL = 'ORDER_LIST_ALL_FAIL';
 
+export const ORDER_DELIVER_REQUEST = 'ORDER_DELIVER_REQUEST';
+export const ORDER_DELIVER_SUCCESS = 'ORDER_DELIVER_SUCCESS';
+export const ORDER_DELIVER_FAIL = 'ORDER_DELIVER_FAIL';
+export const ORDER_DELIVER_RESET = 'ORDER_DELIVER_RESET';
+
 export interface IOrder {
 	_id?: string;
 	orderItems: ICartItem[];
@@ -175,3 +180,32 @@ export type OrderListAllActionTypes =
 	| OrderListAllRequestAction
 	| OrderListAllSuccessAction
 	| OrderListAllFailAction;
+
+/**
+ *  Order List All Orders | Admin only
+ */
+export type OrderDeliverState = {
+	orders: IOrderDetails[];
+	success: boolean;
+	loading: boolean;
+	error?: string;
+};
+interface OrderDeliverRequestAction {
+	type: typeof ORDER_DELIVER_REQUEST;
+}
+interface OrderDeliverSuccessAction {
+	type: typeof ORDER_DELIVER_SUCCESS;
+	payload: IOrderDetails[];
+}
+interface OrderDeliverFailAction {
+	type: typeof ORDER_DELIVER_FAIL;
+	payload: string;
+}
+interface OrderDeliverResetAction {
+	type: typeof ORDER_DELIVER_RESET;
+}
+export type OrderDeliverActionTypes =
+	| OrderDeliverRequestAction
+	| OrderDeliverSuccessAction
+	| OrderDeliverFailAction
+	| OrderDeliverResetAction;

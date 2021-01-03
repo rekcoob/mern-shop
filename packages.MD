@@ -51,3 +51,4 @@ https://www.udemy.com/course/mern-ecommerce/learn/lecture/22498988#questions/128
 #80.DeleteImageWithDeleteFile
 #80.Same Image Size In Bootstrap
 when user create order and create another one it not refreshing untill reload
+Loader instead of Button. Not above button

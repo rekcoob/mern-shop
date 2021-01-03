@@ -16,6 +16,10 @@ import {
 	ORDER_LIST_ALL_REQUEST,
 	ORDER_LIST_ALL_SUCCESS,
 	ORDER_LIST_ALL_FAIL,
+	ORDER_DELIVER_REQUEST,
+	ORDER_DELIVER_SUCCESS,
+	ORDER_DELIVER_FAIL,
+	IOrderDetails,
 } from '../types/orderTypes';
 import { AppThunk } from '../types/rootTypes';
 
@@ -192,6 +196,46 @@ export const listAllOrders = (): AppThunk => async (dispatch, getState) => {
 	} catch (error) {
 		dispatch({
 			type: ORDER_LIST_ALL_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+};
+
+export const deliverOrder = (order: IOrderDetails): AppThunk => async (
+	dispatch,
+	getState
+) => {
+	try {
+		dispatch({
+			type: ORDER_DELIVER_REQUEST,
+		});
+
+		const {
+			userAuth: { userInfo },
+		} = getState();
+
+		const config = {
+			headers: {
+				Authorization: `Bearer ${userInfo.token}`,
+			},
+		};
+
+		const { data } = await axios.put(
+			`/api/orders/${order._id}/deliver`,
+			{},
+			config
+		);
+
+		dispatch({
+			type: ORDER_DELIVER_SUCCESS,
+			payload: data,
+		});
+	} catch (error) {
+		dispatch({
+			type: ORDER_DELIVER_FAIL,
 			payload:
 				error.response && error.response.data.message
 					? error.response.data.message
