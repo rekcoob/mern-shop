@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { Product } from '../components/Product';
@@ -9,13 +10,14 @@ import { RootState } from '../store/types/rootTypes';
 import { IProduct } from '../store/types/productTypes';
 
 export const HomePage: React.FC = () => {
+	const { keyword } = useParams<{ keyword: string }>();
 	const dispatch = useDispatch();
 	const productList = useSelector((state: RootState) => state.productList);
 	const { loading, error, products } = productList;
 
 	useEffect(() => {
-		dispatch(listProducts());
-	}, [dispatch]);
+		dispatch(listProducts(keyword));
+	}, [dispatch, keyword]);
 
 	return (
 		<>

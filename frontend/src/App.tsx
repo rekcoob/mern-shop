@@ -67,6 +67,9 @@ const App: React.FC = () => {
 					<Route path="/admin/orderlist">
 						<OrderListPage />
 					</Route>
+					<Route exact path="/search/:keyword">
+						<HomePage />
+					</Route>
 					<Route exact path="/">
 						<HomePage />
 					</Route>

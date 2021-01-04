@@ -2,13 +2,30 @@ import asyncHandler from 'express-async-handler';
 import Product from '../models/productModel';
 import { IRequestWithUser } from '../types';
 
+type Keyword = {
+	name: {
+		// $regex: string | QueryString.ParsedQs | string[] | QueryString.ParsedQs[];
+		$regex: any;
+		$options: string;
+	};
+};
+
 /**
  * @desc    Fetch all products
  * @route   GET /api/products
  * @access  Public
  */
-const getProducts = asyncHandler(async (_, res) => {
-	const products = await Product.find({});
+const getProducts = asyncHandler(async (req, res) => {
+	const keyword = req.query.keyword
+		? {
+				name: {
+					$regex: req.query.keyword,
+					$options: 'i', // case insensitive
+				},
+		  }
+		: ({} as Keyword);
+
+	const products = await Product.find({ ...keyword });
 	// throw new Error('Some error');
 
 	res.json(products);
