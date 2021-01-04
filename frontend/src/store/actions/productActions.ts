@@ -15,7 +15,12 @@ import {
 	PRODUCT_UPDATE_REQUEST,
 	PRODUCT_UPDATE_SUCCESS,
 	PRODUCT_UPDATE_FAIL,
+	PRODUCT_CREATE_REVIEW_REQUEST,
+	PRODUCT_CREATE_REVIEW_SUCCESS,
+	PRODUCT_CREATE_REVIEW_FAIL,
+	PRODUCT_CREATE_REVIEW_RESET,
 	IProduct,
+	IProductReview,
 } from '../types/productTypes';
 import { AppThunk } from '../types/rootTypes';
 
@@ -52,6 +57,7 @@ export const listProductDetails = (id: string): AppThunk => async (
 			type: PRODUCT_DETAILS_SUCCESS,
 			payload: data,
 		});
+		dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
 	} catch (error) {
 		dispatch({
 			type: PRODUCT_DETAILS_FAIL,
@@ -136,7 +142,7 @@ export const createProduct = (): AppThunk => async (dispatch, getState) => {
 
 // Update Product | Admin Only
 export const updateProduct = (
-	product: Omit<IProduct, 'rating' | 'numReviews'>
+	product: Omit<IProduct, 'rating' | 'numReviews' | 'reviews'>
 ): AppThunk => async (dispatch, getState) => {
 	try {
 		dispatch({
@@ -167,6 +173,43 @@ export const updateProduct = (
 	} catch (error) {
 		dispatch({
 			type: PRODUCT_UPDATE_FAIL,
+			payload:
+				error.response && error.response.data.message
+					? error.response.data.message
+					: error.message,
+		});
+	}
+};
+
+// Create Product Review | Users only
+export const createProductReview = (
+	productId: string,
+	review: Omit<IProductReview, '_id' | 'name' | 'createdAt'>
+): AppThunk => async (dispatch, getState) => {
+	try {
+		dispatch({
+			type: PRODUCT_CREATE_REVIEW_REQUEST,
+		});
+
+		const {
+			userAuth: { userInfo },
+		} = getState();
+
+		const config = {
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${userInfo.token}`,
+			},
+		};
+
+		await axios.post(`/api/products/${productId}/reviews`, review, config);
+
+		dispatch({
+			type: PRODUCT_CREATE_REVIEW_SUCCESS,
+		});
+	} catch (error) {
+		dispatch({
+			type: PRODUCT_CREATE_REVIEW_FAIL,
 			payload:
 				error.response && error.response.data.message
 					? error.response.data.message

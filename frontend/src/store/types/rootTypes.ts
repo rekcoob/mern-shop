@@ -3,6 +3,7 @@ import {
 	ProductDeleteState,
 	ProductDetailsState,
 	ProductListState,
+	ProductReviewCreateState,
 	ProductUpdateState,
 } from './productTypes';
 import { Action } from 'redux';
@@ -45,6 +46,7 @@ export interface RootState {
 	productUpdate: ProductUpdateState;
 	orderListAll: OrderListAllState;
 	orderDeliver: OrderDeliverState;
+	productReviewCreate: ProductReviewCreateState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<
