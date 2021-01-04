@@ -40,7 +40,7 @@ userSchema.pre<IUserModel>('save', async function (next) {
 	this.password = await bcrypt.hash(this.password, salt);
 });
 
-interface IUserModel extends IUser, Document {
+export interface IUserModel extends Omit<IUser, '_id'>, Document {
 	matchPassword(enteredPassword: string): Promise<boolean>;
 }
 

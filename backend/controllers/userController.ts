@@ -1,7 +1,7 @@
 import asyncHandler from 'express-async-handler';
 import generateToken from '../utils/generateToken';
 import User from '../models/userModel';
-import { IRequestWithUser } from '../types/userTypes';
+import { IRequestWithUser } from '../types';
 
 /**
  * @desc    Login user & get token

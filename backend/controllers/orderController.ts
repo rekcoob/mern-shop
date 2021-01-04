@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler';
 import Order from '../models/orderModel.js';
-import { IRequestWithUser } from '../types/userTypes.js';
+import { IRequestWithUser } from '../types/index.js';
 
 /**
  * @desc    Create new order

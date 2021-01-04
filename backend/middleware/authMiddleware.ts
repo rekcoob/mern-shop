@@ -2,9 +2,9 @@ import { Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
-import { IRequestWithUser } from '../types/userTypes.js';
+import { IRequestWithUser, IRequestWithUserOrNull } from '../types/index.js';
 
-const protect = asyncHandler(async (req: IRequestWithUser, res, next) => {
+const protect = asyncHandler(async (req: IRequestWithUserOrNull, res, next) => {
 	let token;
 
 	if (
