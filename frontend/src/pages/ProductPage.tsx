@@ -44,17 +44,19 @@ export const ProductPage: React.FC = () => {
 	);
 	const {
 		success: successProductReview,
+		loading: loadingProductReview,
 		error: errorProductReview,
 	} = productReviewCreate;
 
 	useEffect(() => {
 		if (successProductReview) {
-			// alert('Review Submitted!');
 			setRating(0);
 			setComment('');
+		}
+		if (product._id !== id) {
+			dispatch(listProductDetails(id));
 			dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
 		}
-		dispatch(listProductDetails(id));
 	}, [dispatch, id, successProductReview]);
 
 	const handleAddToCart = () => {
@@ -183,6 +185,7 @@ export const ProductPage: React.FC = () => {
 									{successProductReview && (
 										<Message variant="success">Review Submitted!</Message>
 									)}
+									{loadingProductReview && <Loader />}
 									{userInfo ? (
 										<Form onSubmit={handleSubmit}>
 											<Form.Group controlId="rating">
@@ -210,7 +213,11 @@ export const ProductPage: React.FC = () => {
 													required
 												></Form.Control>
 											</Form.Group>
-											<Button type="submit" variant="primary">
+											<Button
+												disabled={loadingProductReview}
+												type="submit"
+												variant="primary"
+											>
 												Submit
 											</Button>
 										</Form>
