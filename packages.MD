@@ -31,10 +31,14 @@ yarn add -D @types/bcryptjs
 
 yarn add jsonwebtoken
 
-### Image Uploads
+### Image Uploads BE
 
 yarn add multer
 yarn add -D @types/multer
+
+### Custom Page Tittles FE
+
+yarn add react-helmet
 
 ## WorkFlow
 
@@ -61,6 +65,3 @@ order controller req any
 Paginate props
 
 ## ToDo
-
-pagination doesnt work
-problem backend products const page i guess
