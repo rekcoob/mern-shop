@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { Row, Col } from 'react-bootstrap';
 import { Product } from '../components/Product';
@@ -7,6 +7,7 @@ import { ProductCarousel } from '../components/ProductCarousel';
 import { Loader } from '../components/Loader';
 import { Message } from '../components/Message';
 import { Paginate } from '../components/Paginate';
+import { Meta } from '../components/Meta';
 import { listProducts } from '../store/actions/productActions';
 import { RootState } from '../store/types/rootTypes';
 import { IProduct } from '../store/types/productTypes';
@@ -25,7 +26,14 @@ export const HomePage: React.FC = () => {
 
 	return (
 		<>
-			{!keyword && <ProductCarousel />}
+			<Meta />
+			{!keyword ? (
+				<ProductCarousel />
+			) : (
+				<Link to="/" className="btn btn-light">
+					Go Back
+				</Link>
+			)}
 			<h1>Latest Products</h1>
 			{loading ? (
 				<Loader />
