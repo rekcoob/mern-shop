@@ -59,6 +59,8 @@ export interface IProductReview {
  */
 export type ProductListState = {
 	products: IProduct[];
+	page: number;
+	pages: number;
 	loading: boolean;
 	error?: string;
 };
@@ -67,7 +69,11 @@ interface ProductListRequestAction {
 }
 interface ProductListSuccessAction {
 	type: typeof PRODUCT_LIST_SUCCESS;
-	payload: IProduct[];
+	payload: {
+		products: IProduct[];
+		page: number;
+		pages: number;
+	};
 }
 interface ProductListFailAction {
 	type: typeof PRODUCT_LIST_FAIL;

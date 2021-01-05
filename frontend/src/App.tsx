@@ -55,7 +55,10 @@ const App: React.FC = () => {
 					<Route path="/admin/userlist">
 						<UserListPage />
 					</Route>
-					<Route path="/admin/productlist">
+					<Route exact path="/admin/productlist">
+						<ProductListPage />
+					</Route>
+					<Route exact path="/admin/productlist/:pageNumber">
 						<ProductListPage />
 					</Route>
 					<Route path="/admin/user/:id/edit">
@@ -68,6 +71,12 @@ const App: React.FC = () => {
 						<OrderListPage />
 					</Route>
 					<Route exact path="/search/:keyword">
+						<HomePage />
+					</Route>
+					<Route exact path="/page/:pageNumber">
+						<HomePage />
+					</Route>
+					<Route exact path="/search/:keyword/page/:pageNumber">
 						<HomePage />
 					</Route>
 					<Route exact path="/">

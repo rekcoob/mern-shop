@@ -16,6 +16,10 @@ type Keyword = {
  * @access  Public
  */
 const getProducts = asyncHandler(async (req, res) => {
+	const pageSize = 2;
+	// qyeryParam | ?pageNumber=1
+	const page = Number(req.query.pageNumber) || 1;
+
 	const keyword = req.query.keyword
 		? {
 				name: {
@@ -25,10 +29,22 @@ const getProducts = asyncHandler(async (req, res) => {
 		  }
 		: ({} as Keyword);
 
-	const products = await Product.find({ ...keyword });
-	// throw new Error('Some error');
+	const count = await Product.countDocuments({ ...keyword });
+	const products = await Product.find({ ...keyword })
+		.limit(pageSize)
+		.skip(pageSize * (page - 1));
 
-	res.json(products);
+	/**
+	 * Limit by page size (if pageSize = 2, return 2 products).
+	 * Skip makes sure we get the right products
+	 * (for example, if we are on page 2 we get the next 2 products).
+	 * Examples:
+	 * Page 1:  2*(1-1) = 0, so skip 0 products.
+	 * Page 2:  2*(2-1) = 2, so skip 2 products.
+	 */
+
+	// throw new Error('Some error');
+	res.json({ products, page, pages: Math.ceil(count / pageSize) });
 });
 
 /**

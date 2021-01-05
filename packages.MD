@@ -58,3 +58,9 @@ https://www.udemy.com/course/mern-ecommerce/learn/lecture/22498988#questions/128
 when user create order and create another one it not refreshing untill reload
 Loader instead of Button. Not above button
 order controller req any
+Paginate props
+
+## ToDo
+
+pagination doesnt work
+problem backend products const page i guess
