@@ -5,6 +5,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Message } from '../components/Message';
 import { CheckoutSteps } from '../components/CheckoutSteps';
 import { createOrder } from '../store/actions/orderActions';
+import { clearCartItems } from '../store/actions/cartActions';
+import { CART_CLEAR_ITEMS } from '../store/types/cartTypes';
+import { ORDER_CREATE_RESET } from '../store/types/orderTypes';
 import { RootState } from '../store/types/rootTypes';
 
 export const PlaceOrderPage: React.FC = () => {
@@ -40,9 +43,10 @@ export const PlaceOrderPage: React.FC = () => {
 	useEffect(() => {
 		if (success) {
 			history.push(`/order/${order._id}`);
+			dispatch(clearCartItems());
+			dispatch({ type: ORDER_CREATE_RESET });
 		}
-		// eslint-disable-next-line
-	}, [history, success]);
+	}, [dispatch, history, success, order]);
 
 	const handlePlaceOrder = () => {
 		dispatch(
