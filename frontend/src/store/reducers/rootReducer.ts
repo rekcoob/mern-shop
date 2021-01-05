@@ -6,6 +6,7 @@ import {
 	productCreateReducer,
 	productUpdateReducer,
 	productReviewCreateReducer,
+	productTopRatedReducer,
 } from './productReducers';
 import { cartReducer } from './cartReducer';
 import {
@@ -28,23 +29,24 @@ import {
 export const rootReducer = combineReducers({
 	productList: productListReducer,
 	productDetails: productDetailsReducer,
+	productCreate: productCreateReducer,
+	productUpdate: productUpdateReducer,
+	productDelete: productDeleteReducer,
+	productReviewCreate: productReviewCreateReducer,
+	productTopRated: productTopRatedReducer,
 	cart: cartReducer,
 	userAuth: userAuthReducer,
 	userDetails: userDetailsReducer,
 	userUpdateProfile: userUpdateProfileReducer,
-	orderCreate: orderCreateReducer,
-	orderDetails: orderDetailsReducer,
-	orderPay: orderPayReducer,
-	orderListMy: orderListMyReducer,
 	userList: userListReducer,
 	userDelete: userDeleteReducer,
 	userUpdate: userUpdateReducer,
-	productDelete: productDeleteReducer,
-	productCreate: productCreateReducer,
-	productUpdate: productUpdateReducer,
-	orderListAll: orderListAllReducer,
+	orderCreate: orderCreateReducer,
+	orderDetails: orderDetailsReducer,
+	orderPay: orderPayReducer,
 	orderDeliver: orderDeliverReducer,
-	productReviewCreate: productReviewCreateReducer,
+	orderListMy: orderListMyReducer,
+	orderListAll: orderListAllReducer,
 });
 
 export type RootReducer = ReturnType<typeof rootReducer>;

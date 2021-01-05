@@ -3,7 +3,6 @@ import {
 	PRODUCT_LIST_SUCCESS,
 	PRODUCT_LIST_FAIL,
 	ProductActionTypes,
-	ProductListState,
 	PRODUCT_DETAILS_REQUEST,
 	PRODUCT_DETAILS_SUCCESS,
 	PRODUCT_DETAILS_FAIL,
@@ -27,6 +26,10 @@ import {
 	PRODUCT_CREATE_REVIEW_FAIL,
 	PRODUCT_CREATE_REVIEW_RESET,
 	ProductReviewCreateActionTypes,
+	PRODUCT_TOP_REQUEST,
+	PRODUCT_TOP_SUCCESS,
+	PRODUCT_TOP_FAIL,
+	ProductTopRatedActionTypes,
 } from '../types/productTypes';
 
 const initialProductListState = {
@@ -135,6 +138,22 @@ export const productReviewCreateReducer = (
 			return { loading: false, error: action.payload };
 		case PRODUCT_CREATE_REVIEW_RESET:
 			return {};
+		default:
+			return state;
+	}
+};
+
+export const productTopRatedReducer = (
+	state = { products: [] },
+	action: ProductTopRatedActionTypes
+) => {
+	switch (action.type) {
+		case PRODUCT_TOP_REQUEST:
+			return { loading: true, products: [] };
+		case PRODUCT_TOP_SUCCESS:
+			return { loading: false, products: action.payload };
+		case PRODUCT_TOP_FAIL:
+			return { loading: false, error: action.payload };
 		default:
 			return state;
 	}

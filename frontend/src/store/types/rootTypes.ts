@@ -4,6 +4,7 @@ import {
 	ProductDetailsState,
 	ProductListState,
 	ProductReviewCreateState,
+	ProductTopRatedState,
 	ProductUpdateState,
 } from './productTypes';
 import { Action } from 'redux';
@@ -29,24 +30,24 @@ import {
 export interface RootState {
 	productList: ProductListState;
 	productDetails: ProductDetailsState;
-	// cart: CartState;
+	productCreate: ProductCreateState;
+	productUpdate: ProductUpdateState;
+	productDelete: ProductDeleteState;
+	productReviewCreate: ProductReviewCreateState;
+	productTopRated: ProductTopRatedState;
 	cart: CartStateWithPrices;
 	userAuth: UserAuthState;
 	userDetails: UserDetailsState;
 	userUpdateProfile: UserUpdateProfileState;
-	orderCreate: CreateOrderState;
-	orderDetails: OrderDetailsState;
-	orderPay: OrderPayState;
-	orderListMy: OrderListMyState;
 	userList: UserListState;
 	userDelete: UserDeleteState;
 	userUpdate: UserUpdateState;
-	productDelete: ProductDeleteState;
-	productCreate: ProductCreateState;
-	productUpdate: ProductUpdateState;
-	orderListAll: OrderListAllState;
+	orderCreate: CreateOrderState;
+	orderDetails: OrderDetailsState;
+	orderPay: OrderPayState;
 	orderDeliver: OrderDeliverState;
-	productReviewCreate: ProductReviewCreateState;
+	orderListMy: OrderListMyState;
+	orderListAll: OrderListAllState;
 }
 
 export type AppThunk<ReturnType = void> = ThunkAction<
