@@ -3,13 +3,13 @@ import thunk from 'redux-thunk';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { rootReducer } from './reducers/rootReducer';
 import { ICartItem, IShippingAddress } from './types/cartTypes';
-import { IUserInfo } from './types/userTypes';
+import { IUserToken } from './types/userTypes';
 
 const cartItemsFromStorage: ICartItem[] = localStorage.getItem('cartItems')
 	? JSON.parse(localStorage.getItem('cartItems')!)
 	: [];
 
-const userInfoFromStorage: IUserInfo = localStorage.getItem('userInfo')
+const userInfoFromStorage: IUserToken = localStorage.getItem('userInfo')
 	? JSON.parse(localStorage.getItem('userInfo')!)
 	: null;
 

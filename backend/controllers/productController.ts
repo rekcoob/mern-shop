@@ -16,7 +16,7 @@ type Keyword = {
  * @access  Public
  */
 const getProducts = asyncHandler(async (req, res) => {
-	const pageSize = 2;
+	const pageSize = 8;
 	// qyeryParam | ?pageNumber=1
 	const page = Number(req.query.pageNumber) || 1;
 

@@ -34,7 +34,7 @@ export interface IUser {
 	isAdmin: boolean;
 }
 
-export interface IUserInfo extends IUser {
+export interface IUserToken extends IUser {
 	token: string;
 }
 
@@ -42,7 +42,7 @@ export interface IUserInfo extends IUser {
  * User Login & Register
  */
 export type UserAuthState = {
-	userInfo: IUserInfo;
+	userInfo: IUserToken;
 	loading: boolean;
 	error?: string;
 };
@@ -51,7 +51,7 @@ interface UserAuthRequestAction {
 }
 interface UserAuthSuccessAction {
 	type: typeof USER_AUTH_SUCCESS;
-	payload: IUserInfo;
+	payload: IUserToken;
 }
 interface UserAuthFailAction {
 	type: typeof USER_AUTH_FAIL;
@@ -70,7 +70,7 @@ export type UserAuthActionTypes =
  * User Details
  */
 export type UserDetailsState = {
-	user: IUserInfo;
+	user: IUserToken;
 	loading: boolean;
 	error?: string;
 };
@@ -79,7 +79,7 @@ interface UserDetailsRequestAction {
 }
 interface UserDetailsSuccessAction {
 	type: typeof USER_DETAILS_SUCCESS;
-	payload: IUserInfo;
+	payload: IUserToken;
 }
 interface UserDetailsFailAction {
 	type: typeof USER_DETAILS_FAIL;
@@ -98,7 +98,7 @@ export type UserDetailsActionTypes =
  * User Update Profile
  */
 export type UserUpdateProfileState = {
-	user: IUserInfo;
+	user: IUserToken;
 	success: boolean;
 	loading: boolean;
 	error?: string;
@@ -108,7 +108,7 @@ interface UserUpdateProfileRequestAction {
 }
 interface UserUpdateProfileSuccessAction {
 	type: typeof USER_UPDATE_PROFILE_SUCCESS;
-	payload: IUserInfo;
+	payload: IUserToken;
 }
 interface UserUpdateProfileFailAction {
 	type: typeof USER_UPDATE_PROFILE_FAIL;
@@ -127,7 +127,7 @@ export type UserUpdateProfileActionTypes =
  * User List | Admin Only
  */
 export type UserListState = {
-	users: IUserInfo[];
+	users: IUserToken[];
 	loading: boolean;
 	error?: string;
 };
@@ -136,7 +136,7 @@ interface UserListRequestAction {
 }
 interface UserListSuccessAction {
 	type: typeof USER_LIST_SUCCESS;
-	payload: IUserInfo[];
+	payload: IUserToken[];
 }
 interface UserListFailAction {
 	type: typeof USER_LIST_FAIL;

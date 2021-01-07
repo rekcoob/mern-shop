@@ -57,7 +57,7 @@ export const ProductPage: React.FC = () => {
 			dispatch(listProductDetails(id));
 			dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
 		}
-	}, [dispatch, id, successProductReview]);
+	}, [dispatch, product._id, id, successProductReview]);
 
 	const handleAddToCart = () => {
 		history.push(`/cart/${id}?qty=${qty}`);

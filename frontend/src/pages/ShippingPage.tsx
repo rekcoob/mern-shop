@@ -37,7 +37,7 @@ export const ShippingPage: React.FC = () => {
 					<Form.Control
 						type="text"
 						placeholder="Enter address"
-						value={address}
+						defaultValue={address}
 						onChange={(e) => setAddress(e.target.value)}
 						required
 					></Form.Control>
@@ -47,7 +47,7 @@ export const ShippingPage: React.FC = () => {
 					<Form.Control
 						type="text"
 						placeholder="Enter city"
-						value={city}
+						defaultValue={city}
 						onChange={(e) => setCity(e.target.value)}
 						required
 					></Form.Control>
@@ -57,7 +57,7 @@ export const ShippingPage: React.FC = () => {
 					<Form.Control
 						type="text"
 						placeholder="Enter postal code"
-						value={postalCode}
+						defaultValue={postalCode}
 						onChange={(e) => setPostalCode(e.target.value)}
 						required
 					></Form.Control>
@@ -67,7 +67,7 @@ export const ShippingPage: React.FC = () => {
 					<Form.Control
 						type="text"
 						placeholder="Enter country"
-						value={country}
+						defaultValue={country}
 						onChange={(e) => setCountry(e.target.value)}
 						required
 					></Form.Control>
