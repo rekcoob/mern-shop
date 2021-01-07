@@ -52,12 +52,13 @@ export const ProductPage: React.FC = () => {
 		if (successProductReview) {
 			setRating(0);
 			setComment('');
+			dispatch(listProductDetails(id));
 		}
 		if (product._id !== id) {
 			dispatch(listProductDetails(id));
 			dispatch({ type: PRODUCT_CREATE_REVIEW_RESET });
 		}
-	}, [dispatch, product._id, id, successProductReview]);
+	}, [dispatch, id, product._id, successProductReview]);
 
 	const handleAddToCart = () => {
 		history.push(`/cart/${id}?qty=${qty}`);
