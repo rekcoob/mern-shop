@@ -43,7 +43,14 @@ export const HomePage: React.FC = () => {
 				<>
 					<Row>
 						{products.map((product: IProduct) => (
-							<Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+							<Col
+								className="d-flex align-items-stretch"
+								key={product._id}
+								sm={12}
+								md={6}
+								lg={4}
+								xl={3}
+							>
 								<Product product={product} />
 							</Col>
 						))}

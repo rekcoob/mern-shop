@@ -12,6 +12,54 @@ const products = [
 		numReviews: 0,
 	},
 	{
+		name: 'Amazon Echo Dot 3rd Generation',
+		image: '/images/echodot.jpg',
+		description:
+			'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
+		brand: 'Amazon',
+		category: 'Electronics',
+		price: 29.99,
+		countInStock: 0,
+		rating: 0,
+		numReviews: 0,
+	},
+	{
+		name: 'iPhone 11 Pro 256GB Memory',
+		image: '/images/phone.jpg',
+		description:
+			'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
+		brand: 'Apple',
+		category: 'Electronics',
+		price: 599.99,
+		countInStock: 10,
+		rating: 0,
+		numReviews: 0,
+	},
+	{
+		name: 'Xbox Series X',
+		image: '/images/xboxx.jpg',
+		description:
+			'The Xbox Series X is an absolute powerhouse, rocking an eight-core AMD Zen 2 processor, a custom RDNA 2 AMD GPU, 16GB of GDDR6 memory, and a 1TB Custom NVMe SSD.',
+		brand: 'Xbox',
+		category: 'Electronics',
+		price: 499.99,
+		countInStock: 10,
+		rating: 0,
+		numReviews: 0,
+	},
+	{
+		name: 'Logitech G-Series Gaming Mouse',
+		image: '/images/mouse.jpg',
+		description:
+			'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
+		brand: 'Logitech',
+		category: 'Electronics',
+		price: 49.99,
+		countInStock: 7,
+		rating: 0,
+		numReviews: 0,
+	},
+	{
 		name: 'Airpods Wireless Bluetooth Headphones',
 		image: '/images/airpods.jpg',
 		description:
@@ -24,13 +72,13 @@ const products = [
 		numReviews: 0,
 	},
 	{
-		name: 'Xbox Series X',
-		image: '/images/xboxx.jpg',
+		name: 'Alienware Area-51 ALX',
+		image: '/images/alienware.jpg',
 		description:
-			'The Xbox Series X is an absolute powerhouse, rocking an eight-core AMD Zen 2 processor, a custom RDNA 2 AMD GPU, 16GB of GDDR6 memory, and a 1TB Custom NVMe SSD.',
-		brand: 'Xbox',
+			'The Alienware Area-51 ALX (QX9770) is a winning multimedia PC and an über-gaming monster in one box. It tops our latest benchmark tests—and exemplifies conspicuous consumption.',
+		brand: 'Dell',
 		category: 'Electronics',
-		price: 499.99,
+		price: 1999.99,
 		countInStock: 10,
 		rating: 0,
 		numReviews: 0,
@@ -48,44 +96,8 @@ const products = [
 		numReviews: 0,
 	},
 	{
-		name: 'Alienware Area-51 ALX',
-		image: '/images/alienware.jpg',
-		description:
-			'The Alienware Area-51 ALX (QX9770) is a winning multimedia PC and an über-gaming monster in one box. It tops our latest benchmark tests—and exemplifies conspicuous consumption.',
-		brand: 'Dell',
-		category: 'Electronics',
-		price: 1999.99,
-		countInStock: 10,
-		rating: 0,
-		numReviews: 0,
-	},
-	{
-		name: 'iPhone 11 Pro 256GB Memory',
-		image: '/images/phone.jpg',
-		description:
-			'Introducing the iPhone 11 Pro. A transformative triple-camera system that adds tons of capability without complexity. An unprecedented leap in battery life',
-		brand: 'Apple',
-		category: 'Electronics',
-		price: 599.99,
-		countInStock: 10,
-		rating: 0,
-		numReviews: 0,
-	},
-	{
-		name: 'Amazon Echo Dot 3rd Generation',
-		image: '/images/alexa.jpg',
-		description:
-			'Meet Echo Dot - Our most popular smart speaker with a fabric design. It is our most compact smart speaker that fits perfectly into small space',
-		brand: 'Amazon',
-		category: 'Electronics',
-		price: 29.99,
-		countInStock: 0,
-		rating: 0,
-		numReviews: 0,
-	},
-	{
-		name: 'Sony Playstation 4 Pro White Version',
-		image: '/images/playstation.jpg',
+		name: 'Sony PlayStation 4 Pro',
+		image: '/images/ps4.jpg',
 		description:
 			'The ultimate home entertainment center starts with PlayStation. Whether you are into gaming, HD movies, television, music',
 		brand: 'Sony',
@@ -120,18 +132,6 @@ const products = [
 		numReviews: 0,
 	},
 	{
-		name: 'Logitech G-Series Gaming Mouse',
-		image: '/images/mouse.jpg',
-		description:
-			'Get a better handle on your games with this Logitech LIGHTSYNC gaming mouse. The six programmable buttons allow customization for a smooth playing experience',
-		brand: 'Logitech',
-		category: 'Electronics',
-		price: 49.99,
-		countInStock: 7,
-		rating: 0,
-		numReviews: 0,
-	},
-	{
 		name: 'Cannon EOS 80D DSLR Camera',
 		image: '/images/camera.jpg',
 		description:
@@ -141,7 +141,7 @@ const products = [
 		price: 929.99,
 		countInStock: 5,
 		rating: 0,
-		numReviews: 12,
+		numReviews: 0,
 	},
 ];
 

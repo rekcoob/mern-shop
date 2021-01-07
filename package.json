@@ -11,7 +11,8 @@
     "dev": "concurrently \"yarn run backend\" \"yarn run frontend\"",
     "data:import": "node dist/seeder",
     "data:destroy": "node dist/seeder",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd frontend install && yarn --cwd frontend build"
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn --cwd frontend install && yarn --cwd frontend build",
+    "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "keywords": [],
   "author": "rekcoob",
