@@ -54,7 +54,7 @@ const products = [
 			'The Alienware Area-51 ALX (QX9770) is a winning multimedia PC and an über-gaming monster in one box. It tops our latest benchmark tests—and exemplifies conspicuous consumption.',
 		brand: 'Dell',
 		category: 'Electronics',
-		price: 5999.99,
+		price: 1999.99,
 		countInStock: 10,
 		rating: 0,
 		numReviews: 0,
