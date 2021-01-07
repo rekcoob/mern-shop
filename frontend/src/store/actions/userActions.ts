@@ -281,8 +281,8 @@ export const updateUser = (user: IUser): AppThunk => async (
 		const { data } = await axios.put(`/api/users/${user._id}`, user, config);
 
 		dispatch({ type: USER_UPDATE_SUCCESS });
-
 		dispatch({ type: USER_DETAILS_SUCCESS, payload: data });
+		dispatch({ type: USER_DETAILS_RESET });
 	} catch (error) {
 		dispatch({
 			type: USER_UPDATE_FAIL,

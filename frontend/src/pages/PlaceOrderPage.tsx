@@ -6,14 +6,20 @@ import { Message } from '../components/Message';
 import { CheckoutSteps } from '../components/CheckoutSteps';
 import { createOrder } from '../store/actions/orderActions';
 import { clearCartItems } from '../store/actions/cartActions';
-import { CART_CLEAR_ITEMS } from '../store/types/cartTypes';
 import { ORDER_CREATE_RESET } from '../store/types/orderTypes';
+import { USER_DETAILS_RESET } from '../store/types/userTypes';
 import { RootState } from '../store/types/rootTypes';
 
 export const PlaceOrderPage: React.FC = () => {
 	const dispatch = useDispatch();
 	const history = useHistory();
 	const cart = useSelector((state: RootState) => state.cart);
+
+	if (!cart.shippingAddress.address) {
+		history.push('/shipping');
+	} else if (!cart.paymentMethod) {
+		history.push('/payment');
+	}
 
 	//   Calculate prices
 	const addDecimals = (num: number) => {
@@ -45,6 +51,7 @@ export const PlaceOrderPage: React.FC = () => {
 			history.push(`/order/${order._id}`);
 			dispatch(clearCartItems());
 			dispatch({ type: ORDER_CREATE_RESET });
+			dispatch({ type: USER_DETAILS_RESET });
 		}
 	}, [dispatch, history, success, order]);
 

@@ -13,7 +13,7 @@ export const PaymentMethodPage: React.FC = () => {
 
 	const history = useHistory();
 
-	if (!shippingAddress) {
+	if (!shippingAddress.address) {
 		history.push('/shipping');
 	}
 
